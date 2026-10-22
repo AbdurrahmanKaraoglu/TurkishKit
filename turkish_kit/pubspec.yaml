@@ -1,8 +1,8 @@
 name: turkish_kit
 description: Pure Dart Turkish toolkit. TC kimlik, VKN, IBAN and phone validators, amounts in words, Turkish casing and sorting, 81 provinces with districts, holidays and business days.
-version: 0.1.1
-homepage: https://github.com/AbdurrahmanKaraoglu/TurkishKit
-repository: https://github.com/AbdurrahmanKaraoglu/TurkishKit
+version: 0.2.0
+homepage: https://github.com/AbdurrahmanKaraoglu/TurkishKit/tree/main/turkish_kit
+repository: https://github.com/AbdurrahmanKaraoglu/TurkishKit/tree/main/turkish_kit
 issue_tracker: https://github.com/AbdurrahmanKaraoglu/TurkishKit/issues
 topics:
   - turkish

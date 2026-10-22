@@ -49,6 +49,13 @@ void main() {
       find.text('Bin İki Yüz Otuz Dört Türk Lirası Elli Kuruş'),
       findsOneWidget,
     );
+
+    // The money field formats while typing and updates the words.
+    await tester.enterText(find.byType(TextField).first, '25000.5');
+    await tester.pump();
+    expect(find.text('25.000,5 ₺'), findsOneWidget);
+    expect(find.text('Yirmi Beş Bin Türk Lirası Elli Kuruş'), findsOneWidget);
+    expect(find.text('2500050'), findsOneWidget);
     appLocale.value = null;
   });
 }

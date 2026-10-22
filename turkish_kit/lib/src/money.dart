@@ -1,3 +1,4 @@
+import 'grouping.dart';
 import 'number_words.dart';
 import 'text.dart';
 
@@ -31,7 +32,7 @@ abstract final class TurkishNumberFormat {
     } else {
       throw ArgumentError.value(value, 'value', 'must be an int or a BigInt');
     }
-    final grouped = _group(number.abs().toString(), groupSeparator);
+    final grouped = groupThousands(number.abs().toString(), groupSeparator);
     return number.isNegative ? '-$grouped' : grouped;
   }
 
@@ -60,7 +61,7 @@ abstract final class TurkishNumberFormat {
     final fraction = dot < 0 ? '' : fixed.substring(dot + 1);
     final negative = value < 0 && RegExp('[1-9]').hasMatch(fixed);
     final body =
-        (grouping ? _group(integer, '.') : integer) +
+        (grouping ? groupThousands(integer, '.') : integer) +
         (fraction.isEmpty ? '' : ',$fraction');
     return negative ? '-$body' : body;
   }
@@ -114,17 +115,6 @@ final RegExp _numberPattern = RegExp(
   r'(\d{1,3}([. \u00A0\u202F])\d{3}(?:\3\d{3})*|\d*)'
   r'(?:,(\d+))?$',
 );
-
-String _group(String digits, String separator) {
-  final buffer = StringBuffer();
-  final head = digits.length % 3;
-  if (head > 0) buffer.write(digits.substring(0, head));
-  for (var i = head; i < digits.length; i += 3) {
-    if (buffer.isNotEmpty) buffer.write(separator);
-    buffer.write(digits.substring(i, i + 3));
-  }
-  return buffer.toString();
-}
 
 final BigInt _hundred = BigInt.from(100);
 
@@ -323,7 +313,7 @@ class TurkishMoney implements Comparable<TurkishMoney> {
     String groupSeparator = '.',
   }) {
     final number =
-        _group(liraPart.toString(), groupSeparator) +
+        groupThousands(liraPart.toString(), groupSeparator) +
         (hideZeroKurus && kurusPart == 0
             ? ''
             : ',${kurusPart.toString().padLeft(2, '0')}');

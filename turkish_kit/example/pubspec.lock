@@ -203,7 +203,14 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.1.1"
+    version: "0.2.0"
+  turkish_kit_flutter:
+    dependency: "direct main"
+    description:
+      path: "../../turkish_kit_flutter"
+      relative: true
+    source: path
+    version: "0.2.0"
   vector_math:
     dependency: transitive
     description:
@@ -222,4 +229,4 @@ packages:
     version: "15.4.0"
 sdks:
   dart: ">=3.13.2 <4.0.0"
-  flutter: ">=3.18.0-18.0.pre.54"
+  flutter: ">=3.32.0"

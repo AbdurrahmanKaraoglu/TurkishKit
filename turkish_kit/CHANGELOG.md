@@ -1,3 +1,41 @@
+## 0.2.0
+
+* `TurkishMoneyInputMask`: pure-Dart as-you-type formatting for a money
+  field (`1.234,56`, optional ` ₺`). The cursor stays in place when digits
+  are typed or deleted anywhere; backspace or delete on a thousands separator
+  removes the neighbouring digit; a lone `.` key counts as the decimal comma;
+  pasted `1234.56`, `1.234,56`, `₺1.234,56` and `1 234,56 TL` are understood.
+  Options: `fractionDigits` (0-2), `maxValue`, `allowNegative`, `symbol`.
+  `parse`, `format` and `complete` convert to and from `TurkishMoney` with
+  the same rules as `TurkishMoney.format` / `parse`.
+* New companion package
+  [turkish_kit_flutter](https://pub.dev/packages/turkish_kit_flutter):
+  `TurkishMoneyField`, `TurkishMoneyController`, `TurkishMoneyInputFormatter`
+  and `TurkishInputMaskFormatter`. turkish_kit itself stays pure Dart with no
+  dependencies.
+* Thousands grouping is defined in one place and shared by
+  `TurkishNumberFormat`, `TurkishMoney` and the money mask.
+* Example app: the amount tab uses `TurkishMoneyField`.
+
+**Türkçe**
+
+* `TurkishMoneyInputMask`: para alanı için saf Dart, yazarken biçimleme
+  (`1.234,56`, isteğe bağlı ` ₺`). Herhangi bir yerde rakam yazılıp silinirken
+  imleç yerinde kalır. Binlik ayracı üzerinde geri/ileri silme yanındaki
+  rakamı siler. Yalnız basılan `.` ondalık virgülü sayılır. Yapıştırılan
+  `1234.56`, `1.234,56`, `₺1.234,56` ve `1 234,56 TL` anlaşılır. Ayarlar:
+  `fractionDigits` (0-2), `maxValue`, `allowNegative`, `symbol`. `parse`,
+  `format` ve `complete`, `TurkishMoney.format` / `parse` ile aynı kurallarla
+  çalışır.
+* Yeni yardımcı paket
+  [turkish_kit_flutter](https://pub.dev/packages/turkish_kit_flutter):
+  `TurkishMoneyField`, `TurkishMoneyController`, `TurkishMoneyInputFormatter`
+  ve `TurkishInputMaskFormatter`. turkish_kit saf Dart ve bağımlılıksız
+  kalıyor.
+* Binlik gruplama tek yerde tanımlanıyor; `TurkishNumberFormat`,
+  `TurkishMoney` ve para maskesi aynı kuralı kullanıyor.
+* Örnek uygulama: Tutar sekmesi `TurkishMoneyField` kullanıyor.
+
 ## 0.1.1
 
 * Phone numbers with a trunk 0 after the country code are accepted:

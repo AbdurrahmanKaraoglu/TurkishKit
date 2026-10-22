@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:turkish_kit/turkish_kit.dart';
+import 'package:turkish_kit_flutter/turkish_kit_flutter.dart';
 
 import 'app_strings.dart';
 import 'app_theme.dart';
@@ -13,7 +13,14 @@ class MoneyPage extends StatefulWidget {
 }
 
 class _MoneyPageState extends State<MoneyPage> {
-  final TextEditingController _amount = TextEditingController(text: '1.234,50');
+  final TurkishMoneyController _amount = TurkishMoneyController(
+    money: TurkishMoney.fromKurus(123450),
+    mask: TurkishMoneyInputMask(
+      symbol: '₺',
+      allowNegative: true,
+      maxValue: TurkishMoney.lira(999999999999),
+    ),
+  );
   TurkishWordCase _case = TurkishWordCase.title;
   bool _compact = false;
   bool _short = false;
@@ -27,7 +34,7 @@ class _MoneyPageState extends State<MoneyPage> {
   @override
   Widget build(BuildContext context) {
     final AppStrings strings = AppStrings.of(context);
-    final TurkishMoney? money = TurkishMoney.tryParse(_amount.text);
+    final TurkishMoney? money = _amount.money;
     final String currency = _short ? 'TL' : 'Türk Lirası';
     final String subunit = _short ? 'Kr' : 'Kuruş';
     final String separator = _compact ? '' : ' ';
@@ -40,21 +47,13 @@ class _MoneyPageState extends State<MoneyPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              TextField(
+              TurkishMoneyField(
                 controller: _amount,
-                keyboardType: const TextInputType.numberWithOptions(
-                  decimal: true,
-                  signed: true,
-                ),
                 onChanged: (_) => setState(() {}),
                 decoration: InputDecoration(
                   labelText: strings.amount,
-                  hintText: strings.amountHint,
-                  suffixText: '₺',
+                  helperText: strings.amountHelper,
                   prefixIcon: const Icon(Icons.payments_outlined),
-                  errorText: money == null && _amount.text.trim().isNotEmpty
-                      ? strings.invalidAmount
-                      : null,
                 ),
               ),
               const SizedBox(height: Gap.md),
@@ -104,6 +103,8 @@ class _MoneyPageState extends State<MoneyPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 ResultRow(label: strings.formatted, value: money.format()),
+                const Divider(),
+                ResultRow(label: strings.kurusValue, value: '${money.kurus}'),
                 const Divider(),
                 ResultRow(
                   label: strings.inWords,

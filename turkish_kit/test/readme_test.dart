@@ -45,6 +45,17 @@ void main() {
     );
   });
 
+  test('money input mask', () {
+    const mask = TurkishMoneyInputMask(symbol: '₺', fractionDigits: 2);
+    final r = mask.apply(
+      (text: '1.234 ₺', selectionStart: 3, selectionEnd: 3),
+      (text: '1.2934 ₺', selectionStart: 4, selectionEnd: 4),
+    );
+    expect(r, (text: '12.934 ₺', selectionStart: 4, selectionEnd: 4));
+    expect(mask.parse('1.234,5 ₺'), TurkishMoney.fromKurus(123450));
+    expect(mask.format(TurkishMoney.fromKurus(99)), '0,99 ₺');
+  });
+
   test('money', () {
     final total = TurkishMoney.parse('1.234,50 ₺');
     expect(TurkishMoney.fromDecimalString('1234.50'), total);

@@ -1,0 +1,26 @@
+name: turkish_kit_flutter
+description: Flutter widgets for turkish_kit. A Turkish money field (1.234,56 ₺) with a steady cursor, controller and input formatters for Turkish IDs, IBAN and phone numbers.
+version: 0.2.0
+homepage: https://github.com/AbdurrahmanKaraoglu/TurkishKit/tree/main/turkish_kit_flutter
+repository: https://github.com/AbdurrahmanKaraoglu/TurkishKit/tree/main/turkish_kit_flutter
+issue_tracker: https://github.com/AbdurrahmanKaraoglu/TurkishKit/issues
+topics:
+  - turkish
+  - turkey
+  - money
+  - currency
+  - form
+
+environment:
+  sdk: ^3.8.0
+  flutter: ">=3.32.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  turkish_kit: ^0.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0

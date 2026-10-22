@@ -67,11 +67,11 @@ class AppStrings {
     'Amounts are stored as whole kuruş, so there are no rounding errors.',
   );
   String get amount => _t('Tutar', 'Amount');
-  String get amountHint => _t('örn. 1.234,50', 'e.g. 1.234,50');
-  String get invalidAmount => _t(
-    'Geçerli bir tutar girin (1.234,56).',
-    'Enter a valid amount (1.234,56).',
+  String get amountHelper => _t(
+    'Yazarken 1.234,56 biçimine girer; nokta tuşu da virgül sayılır.',
+    'Formats as 1.234,56 while typing; the dot key also works as the comma.',
   );
+  String get kurusValue => _t('Kuruş değeri', 'Value in kuruş');
   String get wordCase => _t('Harf biçimi', 'Letter case');
   String get caseTitle => _t('Başlık', 'Title');
   String get caseUpper => _t('BÜYÜK', 'UPPER');

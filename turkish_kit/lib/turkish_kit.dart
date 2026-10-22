@@ -16,6 +16,7 @@ export 'src/form_validators.dart';
 export 'src/holidays.dart';
 export 'src/input_mask.dart';
 export 'src/money.dart';
+export 'src/money_input_mask.dart';
 export 'src/number_words.dart' show TurkishNumberWords, TurkishWordCase;
 export 'src/provinces.dart';
 export 'src/text.dart';

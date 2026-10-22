@@ -1,33 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:turkish_kit/turkish_kit.dart';
 
 import 'app_strings.dart';
 import 'app_theme.dart';
-
-/// Adapts a pure-Dart [TurkishInputMask] to Flutter's [TextInputFormatter].
-///
-/// turkish_kit has no Flutter dependency; this is all the glue an app needs.
-class TurkishMaskFormatter extends TextInputFormatter {
-  TurkishMaskFormatter(this.mask);
-
-  final TurkishInputMask mask;
-
-  @override
-  TextEditingValue formatEditUpdate(
-    TextEditingValue oldValue,
-    TextEditingValue newValue,
-  ) {
-    final TurkishMaskResult result = mask.apply(
-      newValue.text,
-      newValue.selection.end,
-    );
-    return TextEditingValue(
-      text: result.text,
-      selection: TextSelection.collapsed(offset: result.cursor),
-    );
-  }
-}
 
 /// A page scaffold with a large title, a subtitle and the language menu.
 class PageScaffold extends StatelessWidget {

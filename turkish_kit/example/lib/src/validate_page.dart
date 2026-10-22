@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:turkish_kit/turkish_kit.dart';
+import 'package:turkish_kit_flutter/turkish_kit_flutter.dart';
 
 import 'app_strings.dart';
 import 'app_theme.dart';
@@ -78,8 +78,8 @@ class _ValidatePageState extends State<ValidatePage> {
                 TextFormField(
                   controller: _tc,
                   keyboardType: TextInputType.number,
-                  inputFormatters: <TurkishMaskFormatter>[
-                    TurkishMaskFormatter(TurkishInputMask.tcKimlik),
+                  inputFormatters: <TurkishInputMaskFormatter>[
+                    TurkishInputMaskFormatter(TurkishInputMask.tcKimlik),
                   ],
                   decoration: InputDecoration(
                     labelText: strings.tcKimlik,
@@ -91,8 +91,8 @@ class _ValidatePageState extends State<ValidatePage> {
                 TextFormField(
                   controller: _vkn,
                   keyboardType: TextInputType.number,
-                  inputFormatters: <TurkishMaskFormatter>[
-                    TurkishMaskFormatter(TurkishInputMask.vergiKimlik),
+                  inputFormatters: <TurkishInputMaskFormatter>[
+                    TurkishInputMaskFormatter(TurkishInputMask.vergiKimlik),
                   ],
                   decoration: InputDecoration(
                     labelText: strings.vergiKimlik,
@@ -106,8 +106,8 @@ class _ValidatePageState extends State<ValidatePage> {
                 TextFormField(
                   controller: _iban,
                   keyboardType: TextInputType.number,
-                  inputFormatters: <TurkishMaskFormatter>[
-                    TurkishMaskFormatter(TurkishInputMask.iban),
+                  inputFormatters: <TurkishInputMaskFormatter>[
+                    TurkishInputMaskFormatter(TurkishInputMask.iban),
                   ],
                   decoration: InputDecoration(
                     labelText: strings.iban,
@@ -121,8 +121,8 @@ class _ValidatePageState extends State<ValidatePage> {
                 TextFormField(
                   controller: _phone,
                   keyboardType: TextInputType.phone,
-                  inputFormatters: <TurkishMaskFormatter>[
-                    TurkishMaskFormatter(TurkishInputMask.phone),
+                  inputFormatters: <TurkishInputMaskFormatter>[
+                    TurkishInputMaskFormatter(TurkishInputMask.phone),
                   ],
                   decoration: InputDecoration(
                     labelText: strings.phone,

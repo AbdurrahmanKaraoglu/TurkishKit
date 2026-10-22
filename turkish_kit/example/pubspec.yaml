@@ -13,6 +13,13 @@ dependencies:
     sdk: flutter
   turkish_kit:
     path: ..
+  turkish_kit_flutter:
+    path: ../../turkish_kit_flutter
+
+# turkish_kit_flutter depends on the hosted turkish_kit; use the local one.
+dependency_overrides:
+  turkish_kit:
+    path: ..
 
 dev_dependencies:
   flutter_test:
