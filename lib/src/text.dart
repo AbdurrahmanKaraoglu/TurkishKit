@@ -30,9 +30,9 @@ abstract final class TurkishText {
   ///
   /// Letters after an apostrophe stay lower case: `İstanbul'da`.
   static String toTitleCase(String text) => text.replaceAllMapped(
-        RegExp(r'[^\s\-/]+'),
-        (match) => capitalize(match[0]!),
-      );
+    RegExp(r'[^\s\-/]+'),
+    (match) => capitalize(match[0]!),
+  );
 
   /// Normalizes [text] for accent- and case-insensitive search.
   ///
@@ -81,8 +81,9 @@ abstract final class TurkishText {
   /// a b c ç d e f g ğ h ı i j k l m n o ö p (q) r s ş t u ü v (w x) y z.
   ///
   /// Case and circumflexes are ignored first (`Çorum` sorts with `çorum`,
-  /// `Kâhta` with `Kahta`); only if two strings are otherwise equal does
-  /// lower case come before upper case and a plain letter before `â`.
+  /// `Kâhta` with `Kahta`). Only if two strings are otherwise equal does a
+  /// plain letter come before `â` (`Kahta` < `kâhta`), and after that lower
+  /// case before upper case (`kahta` < `Kahta`).
   /// Digits sort before letters, punctuation and spaces before digits.
   ///
   /// Use it as a sort comparator: `names.sort(TurkishText.compare)`.
@@ -95,13 +96,20 @@ abstract final class TurkishText {
       if (ka[i] != kb[i]) return ka[i] - kb[i];
     }
     if (ka.length != kb.length) return ka.length - kb.length;
-    // Tie-break: lower case before upper case, plain before circumflex.
+    // Tie-breaks, as in Unicode collation: first a plain letter before its
+    // circumflex form (anywhere in the string), then lower case before upper
+    // case.
     final ra = a.runes.toList();
     final rb = b.runes.toList();
     final n = ra.length < rb.length ? ra.length : rb.length;
     for (var i = 0; i < n; i++) {
-      final ta = _tertiary(ra[i]);
-      final tb = _tertiary(rb[i]);
+      final sa = _isCircumflex(ra[i]) ? 1 : 0;
+      final sb = _isCircumflex(rb[i]) ? 1 : 0;
+      if (sa != sb) return sa - sb;
+    }
+    for (var i = 0; i < n; i++) {
+      final ta = _isUpper(ra[i]) ? 1 : 0;
+      final tb = _isUpper(rb[i]) ? 1 : 0;
       if (ta != tb) return ta - tb;
     }
     return a.compareTo(b);
@@ -168,11 +176,15 @@ List<int> _primaryKey(String text) {
   return key;
 }
 
-int _tertiary(int rune) {
-  if (_sortFold.containsKey(rune)) return 2;
-  if (rune == 0xC2 || rune == 0xCE || rune == 0xDB) return 3; // Â Î Û
-  final lower = TurkishText.toLowerCase(String.fromCharCode(rune));
-  return lower == String.fromCharCode(rune) ? 0 : 1;
+bool _isCircumflex(int rune) =>
+    _sortFold.containsKey(rune) ||
+    rune == 0xC2 || // Â
+    rune == 0xCE || // Î
+    rune == 0xDB; // Û
+
+bool _isUpper(int rune) {
+  final char = String.fromCharCode(rune);
+  return TurkishText.toLowerCase(char) != char;
 }
 
 /// Accent folding for [TurkishText.normalizeForSearch] (input is lower case).

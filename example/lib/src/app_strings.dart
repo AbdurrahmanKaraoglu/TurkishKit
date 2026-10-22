@@ -41,8 +41,9 @@ class AppStrings {
 
   // Validate
   String get validateSubtitle => _t(
-      'Biçimleyici yazarken düzenler, doğrulayıcı algoritmayı kontrol eder.',
-      'Masks format while you type, validators check the algorithm.');
+    'Biçimleyici yazarken düzenler, doğrulayıcı algoritmayı kontrol eder.',
+    'Masks format while you type, validators check the algorithm.',
+  );
   String get tcKimlik => _t('T.C. kimlik no', 'Turkish ID number');
   String get vergiKimlik => _t('Vergi kimlik no', 'Tax ID number');
   String get iban => 'IBAN';
@@ -62,12 +63,15 @@ class AppStrings {
 
   // Money
   String get moneySubtitle => _t(
-      'Tutar kuruş olarak tam sayıyla tutulur; ondalık hatası olmaz.',
-      'Amounts are stored as whole kuruş, so there are no rounding errors.');
+    'Tutar kuruş olarak tam sayıyla tutulur; ondalık hatası olmaz.',
+    'Amounts are stored as whole kuruş, so there are no rounding errors.',
+  );
   String get amount => _t('Tutar', 'Amount');
   String get amountHint => _t('örn. 1.234,50', 'e.g. 1.234,50');
-  String get invalidAmount =>
-      _t('Geçerli bir tutar girin (1.234,56).', 'Enter a valid amount (1.234,56).');
+  String get invalidAmount => _t(
+    'Geçerli bir tutar girin (1.234,56).',
+    'Enter a valid amount (1.234,56).',
+  );
   String get wordCase => _t('Harf biçimi', 'Letter case');
   String get caseTitle => _t('Başlık', 'Title');
   String get caseUpper => _t('BÜYÜK', 'UPPER');
@@ -82,8 +86,9 @@ class AppStrings {
 
   // Text
   String get textSubtitle => _t(
-      'Dart\'ın varsayılanı i/İ ve ı/I harflerini yanlış çevirir.',
-      'Dart\'s defaults get the Turkish i/İ and ı/I wrong.');
+    'Dart\'ın varsayılanı i/İ ve ı/I harflerini yanlış çevirir.',
+    'Dart\'s defaults get the Turkish i/İ and ı/I wrong.',
+  );
   String get input => _t('Metin', 'Text');
   String get upperCase => _t('Büyük harf', 'Upper case');
   String get lowerCase => _t('Küçük harf', 'Lower case');
@@ -96,19 +101,24 @@ class AppStrings {
 
   // Provinces
   String provincesSubtitle(int provinces, int districts) => _t(
-      '$provinces il, $districts ilçe; çevrimdışı, resmi e-İçişleri verisi.',
-      '$provinces provinces, $districts districts; offline, official data.');
-  String get searchHint =>
-      _t('İl veya ilçe ara (ör. kagithane)', 'Search province or district (e.g. kagithane)');
+    '$provinces il, $districts ilçe; çevrimdışı, resmi e-İçişleri verisi.',
+    '$provinces provinces, $districts districts; offline, official data.',
+  );
+  String get searchHint => _t(
+    'İl veya ilçe ara (ör. kagithane)',
+    'Search province or district (e.g. kagithane)',
+  );
   String districtCount(int count) => _t('$count ilçe', '$count districts');
   String get metropolitan => _t('Büyükşehir', 'Metropolitan');
-  String matchingDistricts(String names) => _t('İlçe: $names', 'District: $names');
+  String matchingDistricts(String names) =>
+      _t('İlçe: $names', 'District: $names');
   String get noResults => _t('Sonuç yok', 'No results');
 
   // Holidays
   String get holidaysSubtitle => _t(
-      'Bayram tarihleri Diyanet takviminden (2020–2035).',
-      'Bayram dates from the Diyanet calendar (2020–2035).');
+    'Bayram tarihleri Diyanet takviminden (2020–2035).',
+    'Bayram dates from the Diyanet calendar (2020–2035).',
+  );
   String get year => _t('Yıl', 'Year');
   String get halfDay => _t('Yarım gün', 'Half day');
   String get businessDays => _t('İş günü hesabı', 'Business days');
@@ -116,12 +126,25 @@ class AppStrings {
   String get days => _t('İş günü', 'Business days');
   String get result => _t('Sonuç', 'Result');
   String get isBusinessDay => _t('İş günü', 'Working day');
+  String get outOfRange => _t(
+    'Sonuç 2020–2035 aralığının dışında kalıyor.',
+    'The result is outside 2020–2035.',
+  );
   String get notBusinessDay => _t('İş günü değil', 'Not a working day');
-  String holidayName(TurkishHoliday holiday) => isTurkish ? holiday.nameTr : holiday.nameEn;
+  String holidayName(TurkishHoliday holiday) =>
+      isTurkish ? holiday.nameTr : holiday.nameEn;
 
   String weekday(int weekday) => (isTurkish
       ? const <String>['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz']
-      : const <String>['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'])[weekday - 1];
+      : const <String>[
+          'Mon',
+          'Tue',
+          'Wed',
+          'Thu',
+          'Fri',
+          'Sat',
+          'Sun',
+        ])[weekday - 1];
 
   String date(DateTime d) =>
       '${d.day.toString().padLeft(2, '0')}.${d.month.toString().padLeft(2, '0')}.${d.year} ${weekday(d.weekday)}';

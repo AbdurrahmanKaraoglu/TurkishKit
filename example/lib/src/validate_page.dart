@@ -22,7 +22,10 @@ class _ValidatePageState extends State<ValidatePage> {
   @override
   void initState() {
     super.initState();
-    for (final TextEditingController c in <TextEditingController>[_iban, _phone]) {
+    for (final TextEditingController c in <TextEditingController>[
+      _iban,
+      _phone,
+    ]) {
       c.addListener(() => setState(() {}));
     }
   }
@@ -75,24 +78,37 @@ class _ValidatePageState extends State<ValidatePage> {
                 TextFormField(
                   controller: _tc,
                   keyboardType: TextInputType.number,
-                  inputFormatters: <TurkishMaskFormatter>[TurkishMaskFormatter(TurkishInputMask.tcKimlik)],
-                  decoration: InputDecoration(labelText: strings.tcKimlik, prefixIcon: const Icon(Icons.badge_outlined)),
+                  inputFormatters: <TurkishMaskFormatter>[
+                    TurkishMaskFormatter(TurkishInputMask.tcKimlik),
+                  ],
+                  decoration: InputDecoration(
+                    labelText: strings.tcKimlik,
+                    prefixIcon: const Icon(Icons.badge_outlined),
+                  ),
                   validator: TurkishFormValidators.tcKimlik(messages: messages),
                 ),
                 const SizedBox(height: Gap.md),
                 TextFormField(
                   controller: _vkn,
                   keyboardType: TextInputType.number,
-                  inputFormatters: <TurkishMaskFormatter>[TurkishMaskFormatter(TurkishInputMask.vergiKimlik)],
-                  decoration:
-                      InputDecoration(labelText: strings.vergiKimlik, prefixIcon: const Icon(Icons.business_outlined)),
-                  validator: TurkishFormValidators.vergiKimlik(messages: messages),
+                  inputFormatters: <TurkishMaskFormatter>[
+                    TurkishMaskFormatter(TurkishInputMask.vergiKimlik),
+                  ],
+                  decoration: InputDecoration(
+                    labelText: strings.vergiKimlik,
+                    prefixIcon: const Icon(Icons.business_outlined),
+                  ),
+                  validator: TurkishFormValidators.vergiKimlik(
+                    messages: messages,
+                  ),
                 ),
                 const SizedBox(height: Gap.md),
                 TextFormField(
                   controller: _iban,
                   keyboardType: TextInputType.number,
-                  inputFormatters: <TurkishMaskFormatter>[TurkishMaskFormatter(TurkishInputMask.iban)],
+                  inputFormatters: <TurkishMaskFormatter>[
+                    TurkishMaskFormatter(TurkishInputMask.iban),
+                  ],
                   decoration: InputDecoration(
                     labelText: strings.iban,
                     hintText: 'TR00 0000 0000 0000 0000 0000 00',
@@ -105,12 +121,16 @@ class _ValidatePageState extends State<ValidatePage> {
                 TextFormField(
                   controller: _phone,
                   keyboardType: TextInputType.phone,
-                  inputFormatters: <TurkishMaskFormatter>[TurkishMaskFormatter(TurkishInputMask.phone)],
+                  inputFormatters: <TurkishMaskFormatter>[
+                    TurkishMaskFormatter(TurkishInputMask.phone),
+                  ],
                   decoration: InputDecoration(
                     labelText: strings.phone,
                     hintText: '05xx xxx xx xx',
                     prefixIcon: const Icon(Icons.phone_outlined),
-                    helperText: e164 == null || type == null ? null : strings.phoneInfo(e164, type),
+                    helperText: e164 == null || type == null
+                        ? null
+                        : strings.phoneInfo(e164, type),
                   ),
                   validator: TurkishFormValidators.phone(messages: messages),
                 ),

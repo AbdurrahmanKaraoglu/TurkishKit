@@ -42,15 +42,18 @@ void main() {
       for (var n = 0; n < 500; n++) {
         final first9 = <int>[
           1 + random.nextInt(9),
-          for (var i = 0; i < 8; i++) random.nextInt(10)
+          for (var i = 0; i < 8; i++) random.nextInt(10),
         ];
         final tc = _makeTc(first9);
         expect(TurkishValidators.isValidTcKimlik(tc), isTrue, reason: tc);
         final pos = 9 + random.nextInt(2);
         final wrong = (int.parse(tc[pos]) + 1 + random.nextInt(9)) % 10;
         final changed = tc.replaceRange(pos, pos + 1, '$wrong');
-        expect(TurkishValidators.isValidTcKimlik(changed), isFalse,
-            reason: changed);
+        expect(
+          TurkishValidators.isValidTcKimlik(changed),
+          isFalse,
+          reason: changed,
+        );
       }
     });
 
@@ -59,8 +62,11 @@ void main() {
         null, '', '1000000014', '100000001460', '00000000146', //
         '1000000014a', '10000000147', '12345678901', '11111111111x',
       ]) {
-        expect(TurkishValidators.isValidTcKimlik(value), isFalse,
-            reason: value);
+        expect(
+          TurkishValidators.isValidTcKimlik(value),
+          isFalse,
+          reason: value,
+        );
       }
     });
 
@@ -85,8 +91,9 @@ void main() {
       // First digit 0 -> (0 + 9) % 10 = 9, which must count as 9, not 0.
       const first9 = '000000000';
       expect(
-          TurkishValidators.isValidVergiKimlik('$first9${_vknCheck(first9)}'),
-          isTrue);
+        TurkishValidators.isValidVergiKimlik('$first9${_vknCheck(first9)}'),
+        isTrue,
+      );
     });
 
     test('rejects bad input', () {
@@ -95,7 +102,7 @@ void main() {
         '',
         '123456789',
         '12345678901',
-        'abcdefghij'
+        'abcdefghij',
       ]) {
         expect(TurkishValidators.isValidVergiKimlik(value), isFalse);
       }
@@ -114,11 +121,14 @@ void main() {
 
     test('accepts the registry example in any spelling', () {
       expect(TurkishValidators.isValidIban(registryExample), isTrue);
-      expect(TurkishValidators.isValidIban('tr33 0006 1005 1978 6457 8413 26'),
-          isTrue);
       expect(
-          TurkishValidators.isValidIban(' TR33\t0006 1005 1978 6457 8413 26 '),
-          isTrue);
+        TurkishValidators.isValidIban('tr33 0006 1005 1978 6457 8413 26'),
+        isTrue,
+      );
+      expect(
+        TurkishValidators.isValidIban(' TR33\t0006 1005 1978 6457 8413 26 '),
+        isTrue,
+      );
     });
 
     test('matches an independent BigInt implementation', () {
@@ -128,9 +138,15 @@ void main() {
         expect(TurkishValidators.isValidIban(iban), isTrue, reason: iban);
         final pos = 4 + random.nextInt(22);
         final changed = iban.replaceRange(
-            pos, pos + 1, '${(int.parse(iban[pos]) + 1) % 10}');
-        expect(TurkishValidators.isValidIban(changed), isFalse,
-            reason: changed);
+          pos,
+          pos + 1,
+          '${(int.parse(iban[pos]) + 1) % 10}',
+        );
+        expect(
+          TurkishValidators.isValidIban(changed),
+          isFalse,
+          reason: changed,
+        );
       }
     });
 
@@ -146,8 +162,10 @@ void main() {
     });
 
     test('formats, normalizes and reads the bank code', () {
-      expect(TurkishValidators.formatIban('tr330006100519786457841326'),
-          'TR33 0006 1005 1978 6457 8413 26');
+      expect(
+        TurkishValidators.formatIban('tr330006100519786457841326'),
+        'TR33 0006 1005 1978 6457 8413 26',
+      );
       expect(TurkishValidators.formatIban('TR34'), isNull);
       expect(TurkishValidators.normalizeIban(' tr33 0006 '), 'TR330006');
       expect(TurkishValidators.ibanBankCode(registryExample), '00061');
@@ -162,24 +180,39 @@ void main() {
         '532-123-45-67', '+90 532 123 45 67', '+905321234567', '00905321234567',
         '905321234567', '0532.123.45.67',
       ]) {
-        expect(TurkishValidators.normalizePhone(value), '+905321234567',
-            reason: value);
+        expect(
+          TurkishValidators.normalizePhone(value),
+          '+905321234567',
+          reason: value,
+        );
       }
     });
 
     test('classifies numbers', () {
       expect(
-          TurkishValidators.phoneType('05321234567'), TurkishPhoneType.mobile);
-      expect(TurkishValidators.phoneType('0212 123 45 67'),
-          TurkishPhoneType.landline);
-      expect(TurkishValidators.phoneType('0312 123 45 67'),
-          TurkishPhoneType.landline);
-      expect(TurkishValidators.phoneType('0462 123 45 67'),
-          TurkishPhoneType.landline);
-      expect(TurkishValidators.phoneType('0850 123 45 67'),
-          TurkishPhoneType.nonGeographic);
-      expect(TurkishValidators.phoneType('0800 123 45 67'),
-          TurkishPhoneType.nonGeographic);
+        TurkishValidators.phoneType('05321234567'),
+        TurkishPhoneType.mobile,
+      );
+      expect(
+        TurkishValidators.phoneType('0212 123 45 67'),
+        TurkishPhoneType.landline,
+      );
+      expect(
+        TurkishValidators.phoneType('0312 123 45 67'),
+        TurkishPhoneType.landline,
+      );
+      expect(
+        TurkishValidators.phoneType('0462 123 45 67'),
+        TurkishPhoneType.landline,
+      );
+      expect(
+        TurkishValidators.phoneType('0850 123 45 67'),
+        TurkishPhoneType.nonGeographic,
+      );
+      expect(
+        TurkishValidators.phoneType('0800 123 45 67'),
+        TurkishPhoneType.nonGeographic,
+      );
       expect(TurkishValidators.isValidMobilePhone('0212 123 45 67'), isFalse);
       expect(TurkishValidators.isValidLandlinePhone('0212 123 45 67'), isTrue);
     });
@@ -197,11 +230,15 @@ void main() {
 
     test('formats for display', () {
       expect(TurkishValidators.formatPhone('+905321234567'), '0532 123 45 67');
-      expect(TurkishValidators.formatPhone('5321234567', international: true),
-          '+90 532 123 45 67');
+      expect(
+        TurkishValidators.formatPhone('5321234567', international: true),
+        '+90 532 123 45 67',
+      );
       expect(TurkishValidators.formatPhone('123'), isNull);
-      expect(TurkishValidators.nationalPhoneNumber('0 (212) 123 45 67'),
-          '2121234567');
+      expect(
+        TurkishValidators.nationalPhoneNumber('0 (212) 123 45 67'),
+        '2121234567',
+      );
     });
   });
 
@@ -224,15 +261,20 @@ void main() {
 
     test('custom messages and languages', () {
       expect(
-          TurkishFormValidators.phone(messages: TurkishValidationMessages.en)(
-              '1'),
-          TurkishValidationMessages.en.phone);
+        TurkishFormValidators.phone(messages: TurkishValidationMessages.en)(
+          '1',
+        ),
+        TurkishValidationMessages.en.phone,
+      );
       expect(
-          TurkishFormValidators.mobilePhone(message: 'Cep no?')('02121234567'),
-          'Cep no?');
+        TurkishFormValidators.mobilePhone(message: 'Cep no?')('02121234567'),
+        'Cep no?',
+      );
       expect(TurkishFormValidators.landlinePhone()('02121234567'), isNull);
-      expect(TurkishFormValidators.vergiKimlik()('1'),
-          TurkishValidationMessages.tr.vergiKimlik);
+      expect(
+        TurkishFormValidators.vergiKimlik()('1'),
+        TurkishValidationMessages.tr.vergiKimlik,
+      );
       expect(TurkishFormValidators.taxNumber()('10000000146'), isNull);
     });
 

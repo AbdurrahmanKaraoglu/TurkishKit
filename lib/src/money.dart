@@ -49,12 +49,18 @@ abstract final class TurkishNumberFormat {
     if (!value.isFinite) {
       throw ArgumentError.value(value, 'value', 'must be finite');
     }
-    final fixed = value.abs().toStringAsFixed(fractionDigits);
+    // toStringAsFixed switches to exponent notation from 1e21; such doubles
+    // have no fraction, so BigInt gives their exact integer digits.
+    final fixed = value.abs() >= 1e21
+        ? '${BigInt.from(value.abs())}'
+              '${fractionDigits > 0 ? '.${'0' * fractionDigits}' : ''}'
+        : value.abs().toStringAsFixed(fractionDigits);
     final dot = fixed.indexOf('.');
     final integer = dot < 0 ? fixed : fixed.substring(0, dot);
     final fraction = dot < 0 ? '' : fixed.substring(dot + 1);
     final negative = value < 0 && RegExp('[1-9]').hasMatch(fixed);
-    final body = (grouping ? _group(integer, '.') : integer) +
+    final body =
+        (grouping ? _group(integer, '.') : integer) +
         (fraction.isEmpty ? '' : ',$fraction');
     return negative ? '-$body' : body;
   }
@@ -63,15 +69,19 @@ abstract final class TurkishNumberFormat {
   /// `'-1234'` → -1234, `'0,5'` → 0.5.
   ///
   /// Thousands separators are optional but, if present, must group exactly
-  /// three digits (`.`, a space, or a no-break space). A plain `1.234` is
-  /// therefore one thousand two hundred thirty-four, not 1.234. Returns an
-  /// [int] when there is no fraction part, otherwise a [double]. Returns
-  /// `null` if [text] is not a valid number.
+  /// three digits and use one kind of separator (`.`, a space, or a no-break
+  /// space). A plain `1.234` is therefore one thousand two hundred
+  /// thirty-four, not 1.234. Returns an [int] when there is no fraction part
+  /// and the value fits in an [int], otherwise a [double]. Returns `null` if
+  /// [text] is not a valid number.
   static num? tryParse(String text) {
     final parts = parseParts(text);
     if (parts == null) return null;
     final sign = parts.negative ? '-' : '';
-    if (parts.fraction.isEmpty) return int.tryParse('$sign${parts.integer}');
+    if (parts.fraction.isEmpty) {
+      return int.tryParse('$sign${parts.integer}') ??
+          double.parse('$sign${parts.integer}');
+    }
     return double.parse('$sign${parts.integer}.${parts.fraction}');
   }
 
@@ -88,7 +98,7 @@ abstract final class TurkishNumberFormat {
     final match = _numberPattern.firstMatch(text.trim());
     if (match == null) return null;
     final integer = match[2]!.replaceAll(RegExp('[.   ]'), '');
-    final fraction = match[3] ?? '';
+    final fraction = match[4] ?? '';
     if (integer.isEmpty && fraction.isEmpty) return null;
     return (
       negative: match[1] != null && match[1] != '+',
@@ -99,8 +109,9 @@ abstract final class TurkishNumberFormat {
 }
 
 final RegExp _numberPattern = RegExp(
-  r'^([+\-−])?\s*'
-  r'(\d{1,3}(?:[.   ]\d{3})+|\d*)'
+  r'^([+\-\u2212])?\s*'
+  // Either plain digits, or groups of three with one consistent separator.
+  r'(\d{1,3}([. \u00A0\u202F])\d{3}(?:\3\d{3})*|\d*)'
   r'(?:,(\d+))?$',
 );
 
@@ -166,7 +177,12 @@ class TurkishMoney implements Comparable<TurkishMoney> {
     final parts = TurkishNumberFormat.parseParts(cleaned);
     if (parts == null) throw FormatException('Invalid amount', text);
     return _fromParts(
-        parts.negative, parts.integer, parts.fraction, rounding, text);
+      parts.negative,
+      parts.integer,
+      parts.fraction,
+      rounding,
+      text,
+    );
   }
 
   /// Like [parse] but returns `null` for invalid input.
@@ -194,8 +210,13 @@ class TurkishMoney implements Comparable<TurkishMoney> {
     if (match == null || (match[2]!.isEmpty && match[3] == null)) {
       throw FormatException('Invalid decimal', text);
     }
-    return _fromParts(match[1] == '-', match[2]!.isEmpty ? '0' : match[2]!,
-        match[3] ?? '', rounding, text);
+    return _fromParts(
+      match[1] == '-',
+      match[2]!.isEmpty ? '0' : match[2]!,
+      match[3] ?? '',
+      rounding,
+      text,
+    );
   }
 
   /// Converts a [num]. A [double] is taken by its shortest decimal form
@@ -301,7 +322,8 @@ class TurkishMoney implements Comparable<TurkishMoney> {
     bool hideZeroKurus = false,
     String groupSeparator = '.',
   }) {
-    final number = _group(liraPart.toString(), groupSeparator) +
+    final number =
+        _group(liraPart.toString(), groupSeparator) +
         (hideZeroKurus && kurusPart == 0
             ? ''
             : ',${kurusPart.toString().padLeft(2, '0')}');
@@ -327,12 +349,11 @@ class TurkishMoney implements Comparable<TurkishMoney> {
     String subunit = 'Kuruş',
     bool showZeroKurus = false,
     String separator = ' ',
-  }) =>
-      _joinTokens(
-        _wordTokens(currency, subunit, showZeroKurus),
-        wordCase,
-        separator,
-      );
+  }) => _joinTokens(
+    _wordTokens(currency, subunit, showZeroKurus),
+    wordCase,
+    separator,
+  );
 
   /// The amount in the invoice style `Yalnız #...#`:
   /// `'Yalnız #Bin İki Yüz Otuz Dört Türk Lirası Elli Kuruş#'`.
@@ -357,13 +378,17 @@ class TurkishMoney implements Comparable<TurkishMoney> {
       showZeroKurus: showZeroKurus,
       separator: separator,
     );
-    final casedPrefix =
-        prefix.isEmpty ? '' : '${_caseFixed(prefix, wordCase)} ';
+    final casedPrefix = prefix.isEmpty
+        ? ''
+        : '${_caseFixed(prefix, wordCase)} ';
     return '$casedPrefix$delimiter$amount$delimiter';
   }
 
   List<_Token> _wordTokens(
-      String currency, String subunit, bool showZeroKurus) {
+    String currency,
+    String subunit,
+    bool showZeroKurus,
+  ) {
     final tokens = <_Token>[if (isNegative) const _Token('eksi')];
     final lira = liraPart;
     final kr = kurusPart;
@@ -404,15 +429,15 @@ class _Token {
 }
 
 Iterable<_Token> _unitTokens(String unit) => <_Token>[
-      for (final word in unit.split(RegExp(r'\s+')))
-        if (word.isNotEmpty) _Token(word, fixed: true),
-    ];
+  for (final word in unit.split(RegExp(r'\s+')))
+    if (word.isNotEmpty) _Token(word, fixed: true),
+];
 
 String _caseFixed(String word, TurkishWordCase wordCase) => switch (wordCase) {
-      TurkishWordCase.lower => TurkishText.toLowerCase(word),
-      TurkishWordCase.upper => TurkishText.toUpperCase(word),
-      TurkishWordCase.title || TurkishWordCase.sentence => word,
-    };
+  TurkishWordCase.lower => TurkishText.toLowerCase(word),
+  TurkishWordCase.upper => TurkishText.toUpperCase(word),
+  TurkishWordCase.title || TurkishWordCase.sentence => word,
+};
 
 String _joinTokens(
   List<_Token> tokens,

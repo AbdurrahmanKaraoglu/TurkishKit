@@ -17,7 +17,8 @@ class _HolidaysPageState extends State<HolidaysPage> {
   late DateTime _start = _clampDate(DateTime.now());
   int _days = 5;
 
-  static int _clampYear(int year) => year.clamp(TurkishHolidays.firstYear, TurkishHolidays.lastYear);
+  static int _clampYear(int year) =>
+      year.clamp(TurkishHolidays.firstYear, TurkishHolidays.lastYear);
 
   static DateTime _clampDate(DateTime date) {
     final DateTime first = DateTime(TurkishHolidays.firstYear);
@@ -42,7 +43,13 @@ class _HolidaysPageState extends State<HolidaysPage> {
     final AppStrings strings = AppStrings.of(context);
     final ThemeData theme = Theme.of(context);
     final List<TurkishHoliday> holidays = TurkishHolidays.forYear(_year);
-    final DateTime result = TurkishHolidays.addBusinessDays(_start, _days);
+    // Near the ends of the bayram table the result can fall outside it.
+    DateTime? result;
+    try {
+      result = TurkishHolidays.addBusinessDays(_start, _days);
+    } on RangeError {
+      result = null;
+    }
     final bool startIsBusiness = TurkishHolidays.isBusinessDay(_start);
 
     return PageScaffold(
@@ -58,30 +65,47 @@ class _HolidaysPageState extends State<HolidaysPage> {
                 contentPadding: EdgeInsets.zero,
                 leading: const Icon(Icons.event_outlined),
                 title: Text(strings.startDate),
-                subtitle: Text('${strings.date(_start)} · '
-                    '${startIsBusiness ? strings.isBusinessDay : strings.notBusinessDay}'),
+                subtitle: Text(
+                  '${strings.date(_start)} · '
+                  '${startIsBusiness ? strings.isBusinessDay : strings.notBusinessDay}',
+                ),
                 trailing: const Icon(Icons.edit_calendar_outlined),
                 onTap: _pickDate,
               ),
               Row(
                 children: <Widget>[
-                  Expanded(child: Text(strings.days, style: theme.textTheme.bodyLarge)),
+                  Expanded(
+                    child: Text(strings.days, style: theme.textTheme.bodyLarge),
+                  ),
                   IconButton.outlined(
-                    onPressed: _days > -60 ? () => setState(() => _days--) : null,
+                    onPressed: _days > -60
+                        ? () => setState(() => _days--)
+                        : null,
                     icon: const Icon(Icons.remove),
                   ),
                   SizedBox(
                     width: 48,
-                    child: Text('$_days', textAlign: TextAlign.center, style: theme.textTheme.titleMedium),
+                    child: Text(
+                      '$_days',
+                      textAlign: TextAlign.center,
+                      style: theme.textTheme.titleMedium,
+                    ),
                   ),
                   IconButton.outlined(
-                    onPressed: _days < 60 ? () => setState(() => _days++) : null,
+                    onPressed: _days < 60
+                        ? () => setState(() => _days++)
+                        : null,
                     icon: const Icon(Icons.add),
                   ),
                 ],
               ),
               const SizedBox(height: Gap.sm),
-              ResultRow(label: strings.result, value: strings.date(result)),
+              ResultRow(
+                label: strings.result,
+                value: result == null
+                    ? strings.outOfRange
+                    : strings.date(result),
+              ),
             ],
           ),
         ),
@@ -91,25 +115,38 @@ class _HolidaysPageState extends State<HolidaysPage> {
             children: <Widget>[
               DropdownButtonFormField<int>(
                 initialValue: _year,
-                decoration: InputDecoration(labelText: strings.year, prefixIcon: const Icon(Icons.calendar_month)),
+                decoration: InputDecoration(
+                  labelText: strings.year,
+                  prefixIcon: const Icon(Icons.calendar_month),
+                ),
                 items: <DropdownMenuItem<int>>[
-                  for (int y = TurkishHolidays.firstYear; y <= TurkishHolidays.lastYear; y++)
+                  for (
+                    int y = TurkishHolidays.firstYear;
+                    y <= TurkishHolidays.lastYear;
+                    y++
+                  )
                     DropdownMenuItem<int>(value: y, child: Text('$y')),
                 ],
-                onChanged: (int? value) => setState(() => _year = value ?? _year),
+                onChanged: (int? value) =>
+                    setState(() => _year = value ?? _year),
               ),
               const SizedBox(height: Gap.sm),
               for (final TurkishHoliday holiday in holidays)
                 ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: Icon(
-                    holiday.kind.isReligious ? Icons.nightlight_outlined : Icons.flag_outlined,
+                    holiday.kind.isReligious
+                        ? Icons.nightlight_outlined
+                        : Icons.flag_outlined,
                     color: theme.colorScheme.primary,
                   ),
                   title: Text(strings.holidayName(holiday)),
                   subtitle: Text(strings.date(holiday.date)),
                   trailing: holiday.isHalfDay
-                      ? Chip(label: Text(strings.halfDay), visualDensity: VisualDensity.compact)
+                      ? Chip(
+                          label: Text(strings.halfDay),
+                          visualDensity: VisualDensity.compact,
+                        )
                       : null,
                 ),
             ],

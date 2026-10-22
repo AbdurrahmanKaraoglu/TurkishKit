@@ -15,7 +15,10 @@ abstract final class AppTheme {
       brightness: brightness,
       dynamicSchemeVariant: DynamicSchemeVariant.tonalSpot,
     );
-    final ThemeData base = ThemeData(colorScheme: scheme, brightness: brightness);
+    final ThemeData base = ThemeData(
+      colorScheme: scheme,
+      brightness: brightness,
+    );
     final TextTheme text = base.textTheme;
 
     return base.copyWith(
@@ -25,7 +28,10 @@ abstract final class AppTheme {
         surfaceTintColor: Colors.transparent,
         scrolledUnderElevation: 0,
         centerTitle: false,
-        titleTextStyle: text.titleLarge?.copyWith(fontWeight: FontWeight.w600, color: scheme.onSurface),
+        titleTextStyle: text.titleLarge?.copyWith(
+          fontWeight: FontWeight.w600,
+          color: scheme.onSurface,
+        ),
       ),
       cardTheme: CardThemeData(
         elevation: 0,
@@ -40,17 +46,24 @@ abstract final class AppTheme {
         backgroundColor: scheme.surface,
         indicatorColor: scheme.secondaryContainer,
         surfaceTintColor: Colors.transparent,
-        labelTextStyle: WidgetStatePropertyAll<TextStyle?>(text.labelMedium?.copyWith(fontWeight: FontWeight.w600)),
+        labelTextStyle: WidgetStatePropertyAll<TextStyle?>(
+          text.labelMedium?.copyWith(fontWeight: FontWeight.w600),
+        ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: scheme.surfaceContainerLow,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
       ),
       segmentedButtonTheme: SegmentedButtonThemeData(
         style: ButtonStyle(
           visualDensity: VisualDensity.standard,
-          textStyle: WidgetStatePropertyAll<TextStyle?>(text.labelLarge?.copyWith(fontWeight: FontWeight.w600)),
+          textStyle: WidgetStatePropertyAll<TextStyle?>(
+            text.labelLarge?.copyWith(fontWeight: FontWeight.w600),
+          ),
         ),
       ),
       dividerTheme: DividerThemeData(color: scheme.outlineVariant, space: 1),

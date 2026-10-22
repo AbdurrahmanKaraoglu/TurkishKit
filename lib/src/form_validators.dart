@@ -89,85 +89,105 @@ abstract final class TurkishFormValidators {
     bool required = true,
     String? message,
     TurkishValidationMessages messages = TurkishValidationMessages.tr,
-  }) =>
-      _build(TurkishValidators.isValidTcKimlik, required, messages,
-          message ?? messages.tcKimlik);
+  }) => _build(
+    TurkishValidators.isValidTcKimlik,
+    required,
+    messages,
+    message ?? messages.tcKimlik,
+  );
 
   /// Validates a vergi kimlik numarası (10 digits).
   static TurkishFieldValidator vergiKimlik({
     bool required = true,
     String? message,
     TurkishValidationMessages messages = TurkishValidationMessages.tr,
-  }) =>
-      _build(TurkishValidators.isValidVergiKimlik, required, messages,
-          message ?? messages.vergiKimlik);
+  }) => _build(
+    TurkishValidators.isValidVergiKimlik,
+    required,
+    messages,
+    message ?? messages.vergiKimlik,
+  );
 
   /// Validates a tax number: VKN (10 digits) or T.C. kimlik (11 digits).
   static TurkishFieldValidator taxNumber({
     bool required = true,
     String? message,
     TurkishValidationMessages messages = TurkishValidationMessages.tr,
-  }) =>
-      _build(TurkishValidators.isValidTaxNumber, required, messages,
-          message ?? messages.taxNumber);
+  }) => _build(
+    TurkishValidators.isValidTaxNumber,
+    required,
+    messages,
+    message ?? messages.taxNumber,
+  );
 
   /// Validates a Turkish IBAN.
   static TurkishFieldValidator iban({
     bool required = true,
     String? message,
     TurkishValidationMessages messages = TurkishValidationMessages.tr,
-  }) =>
-      _build(TurkishValidators.isValidIban, required, messages,
-          message ?? messages.iban);
+  }) => _build(
+    TurkishValidators.isValidIban,
+    required,
+    messages,
+    message ?? messages.iban,
+  );
 
   /// Validates any Turkish phone number.
   static TurkishFieldValidator phone({
     bool required = true,
     String? message,
     TurkishValidationMessages messages = TurkishValidationMessages.tr,
-  }) =>
-      _build(TurkishValidators.isValidPhone, required, messages,
-          message ?? messages.phone);
+  }) => _build(
+    TurkishValidators.isValidPhone,
+    required,
+    messages,
+    message ?? messages.phone,
+  );
 
   /// Validates a Turkish mobile phone number.
   static TurkishFieldValidator mobilePhone({
     bool required = true,
     String? message,
     TurkishValidationMessages messages = TurkishValidationMessages.tr,
-  }) =>
-      _build(TurkishValidators.isValidMobilePhone, required, messages,
-          message ?? messages.mobilePhone);
+  }) => _build(
+    TurkishValidators.isValidMobilePhone,
+    required,
+    messages,
+    message ?? messages.mobilePhone,
+  );
 
   /// Validates a Turkish landline phone number.
   static TurkishFieldValidator landlinePhone({
     bool required = true,
     String? message,
     TurkishValidationMessages messages = TurkishValidationMessages.tr,
-  }) =>
-      _build(TurkishValidators.isValidLandlinePhone, required, messages,
-          message ?? messages.landlinePhone);
+  }) => _build(
+    TurkishValidators.isValidLandlinePhone,
+    required,
+    messages,
+    message ?? messages.landlinePhone,
+  );
 
   /// Runs [validators] in order and returns the first error.
   static TurkishFieldValidator combine(
-          List<TurkishFieldValidator> validators) =>
-      (value) {
-        for (final validator in validators) {
-          final error = validator(value);
-          if (error != null) return error;
-        }
-        return null;
-      };
+    List<TurkishFieldValidator> validators,
+  ) => (value) {
+    for (final validator in validators) {
+      final error = validator(value);
+      if (error != null) return error;
+    }
+    return null;
+  };
 
   static TurkishFieldValidator _build(
     bool Function(String?) isValid,
     bool required,
     TurkishValidationMessages messages,
     String error,
-  ) =>
-      (value) {
-        if (value == null || value.trim().isEmpty) {
-          return required ? messages.required : null;
-        }
-        return isValid(value) ? null : error;
-      };
+  ) => (value) {
+    if (value == null || value.trim().isEmpty) {
+      return required ? messages.required : null;
+    }
+    return isValid(value) ? null : error;
+  };
 }

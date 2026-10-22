@@ -71,10 +71,10 @@ abstract final class TurkishValidators {
   static bool isValidTaxNumber(String? value) =>
       isValidVergiKimlik(value) || isValidTcKimlik(value);
 
-  /// Removes whitespace and upper-cases [value], for example
-  /// `'tr33 0006 1005'` becomes `'TR3300061005'`.
+  /// Removes whitespace and dashes and upper-cases [value], for example
+  /// `'tr33 0006-1005'` becomes `'TR3300061005'`.
   static String normalizeIban(String value) =>
-      value.replaceAll(RegExp(r'\s+'), '').toUpperCase();
+      value.replaceAll(RegExp(r'[\s-]+'), '').toUpperCase();
 
   /// Whether [value] is a valid Turkish IBAN.
   ///
@@ -98,8 +98,9 @@ abstract final class TurkishValidators {
     final buffer = StringBuffer();
     for (var i = 0; i < iban.length; i += 4) {
       if (i > 0) buffer.write(' ');
-      buffer
-          .write(iban.substring(i, i + 4 > iban.length ? iban.length : i + 4));
+      buffer.write(
+        iban.substring(i, i + 4 > iban.length ? iban.length : i + 4),
+      );
     }
     return buffer.toString();
   }
@@ -113,7 +114,8 @@ abstract final class TurkishValidators {
   /// `null` if [value] is not a valid Turkish phone number.
   ///
   /// Accepts `0532 123 45 67`, `532-123-4567`, `(0532) 123 45 67`,
-  /// `+90 532 123 45 67`, `0090 532 123 45 67` and `905321234567`.
+  /// `+90 532 123 45 67`, `+90 (0532) 123 45 67`, `0090 532 123 45 67` and
+  /// `905321234567`.
   static String? nationalPhoneNumber(String? value) {
     if (value == null) return null;
     var text = value.trim();
@@ -130,12 +132,20 @@ abstract final class TurkishValidators {
       national = digits.substring(2);
     } else if (digits.startsWith('0090')) {
       national = digits.substring(4);
-    } else if (digits.length == 12 && digits.startsWith('90')) {
+    } else if (digits.startsWith('90') &&
+        (digits.length == 12 ||
+            (digits.length == 13 && digits.codeUnitAt(2) == 0x30))) {
       national = digits.substring(2);
     } else if (digits.length == 11 && digits.startsWith('0')) {
       national = digits.substring(1);
     } else {
       national = digits;
+    }
+    // A trunk 0 after the country code: +90 (0532) 123 45 67.
+    if (national.length == 11 &&
+        national.startsWith('0') &&
+        national != digits) {
+      national = national.substring(1);
     }
     if (national.length != 10) return null;
     return _phoneTypeOfNational(national) == null ? null : national;
@@ -218,8 +228,9 @@ String? _digitsOnly(String? value, {required bool allowSeparators}) {
   return result.isEmpty ? null : result;
 }
 
-List<int> _toDigits(String digits) =>
-    <int>[for (final unit in digits.codeUnits) unit - 0x30];
+List<int> _toDigits(String digits) => <int>[
+  for (final unit in digits.codeUnits) unit - 0x30,
+];
 
 /// ISO 7064 mod 97-10 remainder of an IBAN (letters A-Z become 10-35).
 int _mod97(String iban) {

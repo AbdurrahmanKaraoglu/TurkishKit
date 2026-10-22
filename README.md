@@ -21,7 +21,7 @@ Türkçe açıklama için [aşağıya](#türkçe) bakın.
 
 ```yaml
 dependencies:
-  turkish_kit: ^0.1.0
+  turkish_kit: ^0.1.1
 ```
 
 ```dart
@@ -42,6 +42,10 @@ TurkishValidators.normalizePhone('(0532) 123 45 67');    // '+905321234567'
 TurkishValidators.formatPhone('+905321234567');          // '0532 123 45 67'
 TurkishValidators.phoneType('0212 123 45 67');           // TurkishPhoneType.landline
 ```
+
+Input may contain spaces, dashes, dots and parentheses. Phone numbers are
+accepted as `0532…`, `532…`, `+90 532…`, `+90 (0532)…`, `0090 532…` or
+`90532…`; IBANs with spaces or dashes and in lower case.
 
 Checksums only prove that a number is well formed, not that it belongs to a
 real person, company or account.
@@ -138,7 +142,9 @@ names.sort(TurkishText.compare);            // a b c ç d e f g ğ h ı i j ... 
 ```
 
 Sorting ignores case and circumflexes first (`Çorum` next to `çorum`,
-`Kâhta` next to `Kahta`), then puts lower case before upper case.
+`Kâhta` next to `Kahta`). Ties are broken like Unicode collation: plain
+letters before circumflexes, then lower case before upper case
+(`kahta`, `Kahta`, `kâhta`, `Kâhta`).
 
 ## Provinces and districts
 
@@ -211,6 +217,18 @@ or VKN validation. turkish_kit puts all of this in one pure-Dart package with
 no dependencies, exact money handling, offline official data and tests for
 each part.
 
+## Other packages
+
+More packages by the same author on [pub.dev](https://pub.dev/publishers/abdurrahmankaraoglu.com/packages):
+
+* [flutter_toastify](https://pub.dev/packages/flutter_toastify): animated toast notifications
+* [google_maps_polyline](https://pub.dev/packages/google_maps_polyline): Directions API routes and polyline encoding/decoding
+* [marker_crafter](https://pub.dev/packages/marker_crafter): custom Google Maps markers drawn with Canvas
+* [animated_route_marker](https://pub.dev/packages/animated_route_marker): markers that move smoothly along a route
+* [advanced_background_locator](https://pub.dev/packages/advanced_background_locator): location tracking that keeps running in the background
+* [advanced_geofence](https://pub.dev/packages/advanced_geofence): pure Dart geofencing with enter, exit and dwell events
+* [route_simulator](https://pub.dev/packages/route_simulator): pure Dart fake GPS streams along a route for testing
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
@@ -236,7 +254,7 @@ sunucuda, komut satırında ve web'de çalışır).
 
 ```yaml
 dependencies:
-  turkish_kit: ^0.1.0
+  turkish_kit: ^0.1.1
 ```
 
 ### Doğrulama
@@ -329,6 +347,17 @@ para için `double` kullanıyor veya veriyi ağdan çekiyor. Türk resmi tatille
 ve VKN doğrulaması için paket yoktu. turkish_kit bunların hepsini bağımlılıksız,
 saf Dart, tam sayı tabanlı para hesabı ve çevrimdışı resmi veriyle tek pakette
 toplar.
+
+### Diğer paketler
+
+Aynı geliştiricinin [pub.dev](https://pub.dev/publishers/abdurrahmankaraoglu.com/packages)'deki diğer paketleri:
+[flutter_toastify](https://pub.dev/packages/flutter_toastify),
+[google_maps_polyline](https://pub.dev/packages/google_maps_polyline),
+[marker_crafter](https://pub.dev/packages/marker_crafter),
+[animated_route_marker](https://pub.dev/packages/animated_route_marker),
+[advanced_background_locator](https://pub.dev/packages/advanced_background_locator),
+[advanced_geofence](https://pub.dev/packages/advanced_geofence),
+[route_simulator](https://pub.dev/packages/route_simulator).
 
 ### Lisans
 

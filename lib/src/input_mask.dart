@@ -24,15 +24,18 @@ class TurkishInputMask {
   /// [digitFilter] may rewrite the typed digits before masking; [phone] uses
   /// it to drop a typed leading `0`, `90` or `0090`.
   const TurkishInputMask(this.pattern, {String Function(String)? digitFilter})
-      : _digitFilter = digitFilter;
+    : _digitFilter = digitFilter;
 
   /// `0532 123 45 67`. A typed leading `0`, `+90` or `0090` is absorbed.
-  static const TurkishInputMask phone =
-      TurkishInputMask('0### ### ## ##', digitFilter: _phoneDigits);
+  static const TurkishInputMask phone = TurkishInputMask(
+    '0### ### ## ##',
+    digitFilter: _phoneDigits,
+  );
 
   /// `TR33 0006 1005 1978 6457 8413 26`. `TR` is inserted automatically.
-  static const TurkishInputMask iban =
-      TurkishInputMask('TR## #### #### #### #### #### ##');
+  static const TurkishInputMask iban = TurkishInputMask(
+    'TR## #### #### #### #### #### ##',
+  );
 
   /// 11-digit T.C. kimlik numarası, digits only.
   static const TurkishInputMask tcKimlik = TurkishInputMask('###########');
@@ -72,8 +75,9 @@ class TurkishInputMask {
     if (filter != null) {
       final filtered = filter(digitText);
       final removed = digitText.length - filtered.length;
-      digitsBeforeCursor =
-          digitsBeforeCursor - removed < 0 ? 0 : digitsBeforeCursor - removed;
+      digitsBeforeCursor = digitsBeforeCursor - removed < 0
+          ? 0
+          : digitsBeforeCursor - removed;
       digitText = filtered;
     }
     digits = StringBuffer();
@@ -99,10 +103,13 @@ class TurkishInputMask {
 }
 
 String _phoneDigits(String digits) {
-  if (digits.startsWith('0090')) return digits.substring(4);
-  if (digits.startsWith('90') && digits.length > 10) {
-    return digits.substring(2);
+  var d = digits;
+  if (d.startsWith('0090')) {
+    d = d.substring(4);
+  } else if (d.startsWith('90') &&
+      (d.length > 10 || (d.length > 2 && d[2] != '0'))) {
+    // Country code. No national number starts with 90 except 900.
+    d = d.substring(2);
   }
-  if (digits.startsWith('0')) return digits.substring(1);
-  return digits;
+  return d.startsWith('0') ? d.substring(1) : d;
 }

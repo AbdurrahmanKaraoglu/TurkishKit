@@ -22,8 +22,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Seyhan',
       'Tufanbeyli',
       'Yumurtalık',
-      'Yüreğir'
-    ]
+      'Yüreğir',
+    ],
   ),
   (
     2,
@@ -37,8 +37,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Merkez',
       'Samsat',
       'Sincik',
-      'Tut'
-    ]
+      'Tut',
+    ],
   ),
   (
     3,
@@ -61,8 +61,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Sandıklı',
       'Sinanpaşa',
       'Sultandağı',
-      'Şuhut'
-    ]
+      'Şuhut',
+    ],
   ),
   (
     4,
@@ -75,8 +75,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Merkez',
       'Patnos',
       'Taşlıçay',
-      'Tutak'
-    ]
+      'Tutak',
+    ],
   ),
   (
     5,
@@ -88,8 +88,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Merkez',
       'Merzifon',
       'Suluova',
-      'Taşova'
-    ]
+      'Taşova',
+    ],
   ),
   (
     6,
@@ -119,8 +119,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Pursaklar',
       'Sincan',
       'Şereflikoçhisar',
-      'Yenimahalle'
-    ]
+      'Yenimahalle',
+    ],
   ),
   (
     7,
@@ -144,8 +144,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Kumluca',
       'Manavgat',
       'Muratpaşa',
-      'Serik'
-    ]
+      'Serik',
+    ],
   ),
   (
     8,
@@ -159,8 +159,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Merkez',
       'Murgul',
       'Şavşat',
-      'Yusufeli'
-    ]
+      'Yusufeli',
+    ],
   ),
   (
     9,
@@ -182,8 +182,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Nazilli',
       'Söke',
       'Sultanhisar',
-      'Yenipazar'
-    ]
+      'Yenipazar',
+    ],
   ),
   (
     10,
@@ -208,8 +208,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Marmara',
       'Savaştepe',
       'Sındırgı',
-      'Susurluk'
-    ]
+      'Susurluk',
+    ],
   ),
   (
     11,
@@ -222,8 +222,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Osmaneli',
       'Pazaryeri',
       'Söğüt',
-      'Yenipazar'
-    ]
+      'Yenipazar',
+    ],
   ),
   (
     12,
@@ -236,13 +236,13 @@ const List<(int, String, List<String>)> provinceData = [
       'Merkez',
       'Solhan',
       'Yayladere',
-      'Yedisu'
-    ]
+      'Yedisu',
+    ],
   ),
   (
     13,
     'Bitlis',
-    ['Adilcevaz', 'Ahlat', 'Güroymak', 'Hizan', 'Merkez', 'Mutki', 'Tatvan']
+    ['Adilcevaz', 'Ahlat', 'Güroymak', 'Hizan', 'Merkez', 'Mutki', 'Tatvan'],
   ),
   (
     14,
@@ -256,8 +256,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Merkez',
       'Mudurnu',
       'Seben',
-      'Yeniçağa'
-    ]
+      'Yeniçağa',
+    ],
   ),
   (
     15,
@@ -273,8 +273,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Kemer',
       'Merkez',
       'Tefenni',
-      'Yeşilova'
-    ]
+      'Yeşilova',
+    ],
   ),
   (
     16,
@@ -296,8 +296,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Orhangazi',
       'Osmangazi',
       'Yenişehir',
-      'Yıldırım'
-    ]
+      'Yıldırım',
+    ],
   ),
   (
     17,
@@ -314,8 +314,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Gökçeada',
       'Lapseki',
       'Merkez',
-      'Yenice'
-    ]
+      'Yenice',
+    ],
   ),
   (
     18,
@@ -332,8 +332,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Merkez',
       'Orta',
       'Şabanözü',
-      'Yapraklı'
-    ]
+      'Yapraklı',
+    ],
   ),
   (
     19,
@@ -352,8 +352,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Ortaköy',
       'Osmancık',
       'Sungurlu',
-      'Uğurludağ'
-    ]
+      'Uğurludağ',
+    ],
   ),
   (
     20,
@@ -377,8 +377,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Pamukkale',
       'Sarayköy',
       'Serinhisar',
-      'Tavas'
-    ]
+      'Tavas',
+    ],
   ),
   (
     21,
@@ -400,8 +400,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Lice',
       'Silvan',
       'Sur',
-      'Yenişehir'
-    ]
+      'Yenişehir',
+    ],
   ),
   (
     22,
@@ -415,8 +415,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Meriç',
       'Merkez',
       'Süloğlu',
-      'Uzunköprü'
-    ]
+      'Uzunköprü',
+    ],
   ),
   (
     23,
@@ -432,8 +432,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Maden',
       'Merkez',
       'Palu',
-      'Sivrice'
-    ]
+      'Sivrice',
+    ],
   ),
   (
     24,
@@ -447,8 +447,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Otlukbeli',
       'Refahiye',
       'Tercan',
-      'Üzümlü'
-    ]
+      'Üzümlü',
+    ],
   ),
   (
     25,
@@ -473,8 +473,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Tekman',
       'Tortum',
       'Uzundere',
-      'Yakutiye'
-    ]
+      'Yakutiye',
+    ],
   ),
   (
     26,
@@ -493,8 +493,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Sarıcakaya',
       'Seyitgazi',
       'Sivrihisar',
-      'Tepebaşı'
-    ]
+      'Tepebaşı',
+    ],
   ),
   (
     27,
@@ -508,8 +508,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Oğuzeli',
       'Şahinbey',
       'Şehitkamil',
-      'Yavuzeli'
-    ]
+      'Yavuzeli',
+    ],
   ),
   (
     28,
@@ -530,8 +530,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Piraziz',
       'Şebinkarahisar',
       'Tirebolu',
-      'Yağlıdere'
-    ]
+      'Yağlıdere',
+    ],
   ),
   (29, 'Gümüşhane', ['Kelkit', 'Köse', 'Kürtün', 'Merkez', 'Şiran', 'Torul']),
   (30, 'Hakkari', ['Çukurca', 'Derecik', 'Merkez', 'Şemdinli', 'Yüksekova']),
@@ -553,8 +553,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Payas',
       'Reyhanlı',
       'Samandağ',
-      'Yayladağı'
-    ]
+      'Yayladağı',
+    ],
   ),
   (
     32,
@@ -572,8 +572,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Şarkikaraağaç',
       'Uluborlu',
       'Yalvaç',
-      'Yenişarbademli'
-    ]
+      'Yenişarbademli',
+    ],
   ),
   (
     33,
@@ -591,8 +591,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Silifke',
       'Tarsus',
       'Toroslar',
-      'Yenişehir'
-    ]
+      'Yenişehir',
+    ],
   ),
   (
     34,
@@ -636,8 +636,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Tuzla',
       'Ümraniye',
       'Üsküdar',
-      'Zeytinburnu'
-    ]
+      'Zeytinburnu',
+    ],
   ),
   (
     35,
@@ -672,8 +672,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Selçuk',
       'Tire',
       'Torbalı',
-      'Urla'
-    ]
+      'Urla',
+    ],
   ),
   (
     36,
@@ -686,8 +686,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Merkez',
       'Sarıkamış',
       'Selim',
-      'Susuz'
-    ]
+      'Susuz',
+    ],
   ),
   (
     37,
@@ -712,8 +712,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Seydiler',
       'Şenpazar',
       'Taşköprü',
-      'Tosya'
-    ]
+      'Tosya',
+    ],
   ),
   (
     38,
@@ -734,8 +734,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Talas',
       'Tomarza',
       'Yahyalı',
-      'Yeşilhisar'
-    ]
+      'Yeşilhisar',
+    ],
   ),
   (
     39,
@@ -748,13 +748,13 @@ const List<(int, String, List<String>)> provinceData = [
       'Merkez',
       'Pehlivanköy',
       'Pınarhisar',
-      'Vize'
-    ]
+      'Vize',
+    ],
   ),
   (
     40,
     'Kırşehir',
-    ['Akçakent', 'Akpınar', 'Boztepe', 'Çiçekdağı', 'Kaman', 'Merkez', 'Mucur']
+    ['Akçakent', 'Akpınar', 'Boztepe', 'Çiçekdağı', 'Kaman', 'Merkez', 'Mucur'],
   ),
   (
     41,
@@ -771,8 +771,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Kandıra',
       'Karamürsel',
       'Kartepe',
-      'Körfez'
-    ]
+      'Körfez',
+    ],
   ),
   (
     42,
@@ -808,8 +808,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Taşkent',
       'Tuzlukçu',
       'Yalıhüyük',
-      'Yunak'
-    ]
+      'Yunak',
+    ],
   ),
   (
     43,
@@ -827,8 +827,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Pazarlar',
       'Simav',
       'Şaphane',
-      'Tavşanlı'
-    ]
+      'Tavşanlı',
+    ],
   ),
   (
     44,
@@ -846,8 +846,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Kuluncak',
       'Pütürge',
       'Yazıhan',
-      'Yeşilyurt'
-    ]
+      'Yeşilyurt',
+    ],
   ),
   (
     45,
@@ -869,8 +869,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Soma',
       'Şehzadeler',
       'Turgutlu',
-      'Yunusemre'
-    ]
+      'Yunusemre',
+    ],
   ),
   (
     46,
@@ -886,8 +886,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Nurhak',
       'Onikişubat',
       'Pazarcık',
-      'Türkoğlu'
-    ]
+      'Türkoğlu',
+    ],
   ),
   (
     47,
@@ -902,8 +902,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Nusaybin',
       'Ömerli',
       'Savur',
-      'Yeşilli'
-    ]
+      'Yeşilli',
+    ],
   ),
   (
     48,
@@ -921,8 +921,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Ortaca',
       'Seydikemer',
       'Ula',
-      'Yatağan'
-    ]
+      'Yatağan',
+    ],
   ),
   (49, 'Muş', ['Bulanık', 'Hasköy', 'Korkut', 'Malazgirt', 'Merkez', 'Varto']),
   (
@@ -936,13 +936,13 @@ const List<(int, String, List<String>)> provinceData = [
       'Hacıbektaş',
       'Kozaklı',
       'Merkez',
-      'Ürgüp'
-    ]
+      'Ürgüp',
+    ],
   ),
   (
     51,
     'Niğde',
-    ['Altunhisar', 'Bor', 'Çamardı', 'Çiftlik', 'Merkez', 'Ulukışla']
+    ['Altunhisar', 'Bor', 'Çamardı', 'Çiftlik', 'Merkez', 'Ulukışla'],
   ),
   (
     52,
@@ -966,8 +966,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Mesudiye',
       'Perşembe',
       'Ulubey',
-      'Ünye'
-    ]
+      'Ünye',
+    ],
   ),
   (
     53,
@@ -984,8 +984,8 @@ const List<(int, String, List<String>)> provinceData = [
       'İyidere',
       'Kalkandere',
       'Merkez',
-      'Pazar'
-    ]
+      'Pazar',
+    ],
   ),
   (
     54,
@@ -1006,8 +1006,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Sapanca',
       'Serdivan',
       'Söğütlü',
-      'Taraklı'
-    ]
+      'Taraklı',
+    ],
   ),
   (
     55,
@@ -1029,13 +1029,13 @@ const List<(int, String, List<String>)> provinceData = [
       'Tekkeköy',
       'Terme',
       'Vezirköprü',
-      'Yakakent'
-    ]
+      'Yakakent',
+    ],
   ),
   (
     56,
     'Siirt',
-    ['Baykan', 'Eruh', 'Kurtalan', 'Merkez', 'Pervari', 'Şirvan', 'Tillo']
+    ['Baykan', 'Eruh', 'Kurtalan', 'Merkez', 'Pervari', 'Şirvan', 'Tillo'],
   ),
   (
     57,
@@ -1049,8 +1049,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Gerze',
       'Merkez',
       'Saraydüzü',
-      'Türkeli'
-    ]
+      'Türkeli',
+    ],
   ),
   (
     58,
@@ -1072,8 +1072,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Şarkışla',
       'Ulaş',
       'Yıldızeli',
-      'Zara'
-    ]
+      'Zara',
+    ],
   ),
   (
     59,
@@ -1089,8 +1089,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Muratlı',
       'Saray',
       'Süleymanpaşa',
-      'Şarköy'
-    ]
+      'Şarköy',
+    ],
   ),
   (
     60,
@@ -1107,8 +1107,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Sulusaray',
       'Turhal',
       'Yeşilyurt',
-      'Zile'
-    ]
+      'Zile',
+    ],
   ),
   (
     61,
@@ -1131,8 +1131,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Şalpazarı',
       'Tonya',
       'Vakfıkebir',
-      'Yomra'
-    ]
+      'Yomra',
+    ],
   ),
   (
     62,
@@ -1145,8 +1145,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Nazımiye',
       'Ovacık',
       'Pertek',
-      'Pülümür'
-    ]
+      'Pülümür',
+    ],
   ),
   (
     63,
@@ -1164,8 +1164,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Karaköprü',
       'Siverek',
       'Suruç',
-      'Viranşehir'
-    ]
+      'Viranşehir',
+    ],
   ),
   (64, 'Uşak', ['Banaz', 'Eşme', 'Karahallı', 'Merkez', 'Sivaslı', 'Ulubey']),
   (
@@ -1184,8 +1184,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Muradiye',
       'Özalp',
       'Saray',
-      'Tuşba'
-    ]
+      'Tuşba',
+    ],
   ),
   (
     66,
@@ -1204,8 +1204,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Sorgun',
       'Şefaatli',
       'Yenifakılı',
-      'Yerköy'
-    ]
+      'Yerköy',
+    ],
   ),
   (
     67,
@@ -1218,8 +1218,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Gökçebey',
       'Kilimli',
       'Kozlu',
-      'Merkez'
-    ]
+      'Merkez',
+    ],
   ),
   (
     68,
@@ -1232,8 +1232,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Merkez',
       'Ortaköy',
       'Sarıyahşi',
-      'Sultanhanı'
-    ]
+      'Sultanhanı',
+    ],
   ),
   (69, 'Bayburt', ['Aydıntepe', 'Demirözü', 'Merkez']),
   (
@@ -1245,8 +1245,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Ermenek',
       'Kazımkarabekir',
       'Merkez',
-      'Sarıveliler'
-    ]
+      'Sarıveliler',
+    ],
   ),
   (
     71,
@@ -1260,13 +1260,13 @@ const List<(int, String, List<String>)> provinceData = [
       'Keskin',
       'Merkez',
       'Sulakyurt',
-      'Yahşihan'
-    ]
+      'Yahşihan',
+    ],
   ),
   (
     72,
     'Batman',
-    ['Beşiri', 'Gercüş', 'Hasankeyf', 'Kozluk', 'Merkez', 'Sason']
+    ['Beşiri', 'Gercüş', 'Hasankeyf', 'Kozluk', 'Merkez', 'Sason'],
   ),
   (
     73,
@@ -1278,8 +1278,8 @@ const List<(int, String, List<String>)> provinceData = [
       'İdil',
       'Merkez',
       'Silopi',
-      'Uludere'
-    ]
+      'Uludere',
+    ],
   ),
   (74, 'Bartın', ['Amasra', 'Kurucaşile', 'Merkez', 'Ulus']),
   (75, 'Ardahan', ['Çıldır', 'Damal', 'Göle', 'Hanak', 'Merkez', 'Posof']),
@@ -1287,12 +1287,12 @@ const List<(int, String, List<String>)> provinceData = [
   (
     77,
     'Yalova',
-    ['Altınova', 'Armutlu', 'Çınarcık', 'Çiftlikköy', 'Merkez', 'Termal']
+    ['Altınova', 'Armutlu', 'Çınarcık', 'Çiftlikköy', 'Merkez', 'Termal'],
   ),
   (
     78,
     'Karabük',
-    ['Eflani', 'Eskipazar', 'Merkez', 'Ovacık', 'Safranbolu', 'Yenice']
+    ['Eflani', 'Eskipazar', 'Merkez', 'Ovacık', 'Safranbolu', 'Yenice'],
   ),
   (79, 'Kilis', ['Elbeyli', 'Merkez', 'Musabeyli', 'Polateli']),
   (
@@ -1305,8 +1305,8 @@ const List<(int, String, List<String>)> provinceData = [
       'Kadirli',
       'Merkez',
       'Sumbas',
-      'Toprakkale'
-    ]
+      'Toprakkale',
+    ],
   ),
   (
     81,
@@ -1319,7 +1319,7 @@ const List<(int, String, List<String>)> provinceData = [
       'Gümüşova',
       'Kaynaşlı',
       'Merkez',
-      'Yığılca'
-    ]
+      'Yığılca',
+    ],
   ),
 ];

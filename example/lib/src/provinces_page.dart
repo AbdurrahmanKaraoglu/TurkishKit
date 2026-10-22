@@ -19,26 +19,43 @@ class _ProvincesPageState extends State<ProvincesPage> {
   Widget build(BuildContext context) {
     final AppStrings strings = AppStrings.of(context);
     final String key = _query.toSearchKey();
-    final List<(TurkishProvince, List<String>)> rows = <(TurkishProvince, List<String>)>[
-      for (final TurkishProvince province in TurkishProvinces.all)
-        if (key.isEmpty || province.name.turkishContains(key))
-          (province, const <String>[])
-        else if (province.districts.any((String d) => d.turkishContains(key)))
-          (province, province.districts.where((String d) => d.turkishContains(key)).toList()),
-    ];
+    final List<(TurkishProvince, List<String>)> rows =
+        <(TurkishProvince, List<String>)>[
+          for (final TurkishProvince province in TurkishProvinces.all)
+            if (key.isEmpty || province.name.turkishContains(key))
+              (province, const <String>[])
+            else if (province.districts.any(
+              (String d) => d.turkishContains(key),
+            ))
+              (
+                province,
+                province.districts
+                    .where((String d) => d.turkishContains(key))
+                    .toList(),
+              ),
+        ];
 
     return PageScaffold(
       title: strings.navProvinces,
-      subtitle: strings.provincesSubtitle(TurkishProvinces.all.length, TurkishProvinces.districtCount),
+      subtitle: strings.provincesSubtitle(
+        TurkishProvinces.all.length,
+        TurkishProvinces.districtCount,
+      ),
       children: <Widget>[
         TextField(
           onChanged: (String value) => setState(() => _query = value),
-          decoration: InputDecoration(hintText: strings.searchHint, prefixIcon: const Icon(Icons.search)),
+          decoration: InputDecoration(
+            hintText: strings.searchHint,
+            prefixIcon: const Icon(Icons.search),
+          ),
         ),
         Card(
           clipBehavior: Clip.antiAlias,
           child: rows.isEmpty
-              ? Padding(padding: const EdgeInsets.all(Gap.lg), child: Center(child: Text(strings.noResults)))
+              ? Padding(
+                  padding: const EdgeInsets.all(Gap.lg),
+                  child: Center(child: Text(strings.noResults)),
+                )
               : Column(
                   children: <Widget>[
                     for (int i = 0; i < rows.length; i++) ...<Widget>[
@@ -77,15 +94,23 @@ class _ProvinceTile extends StatelessWidget {
         ),
         child: Text(
           province.plateCodeText,
-          style: theme.textTheme.titleSmall?.copyWith(color: scheme.onPrimaryContainer, fontWeight: FontWeight.w700),
+          style: theme.textTheme.titleSmall?.copyWith(
+            color: scheme.onPrimaryContainer,
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
       title: Text(province.name),
       subtitle: Text(
-        matches.isEmpty ? strings.districtCount(province.districts.length) : strings.matchingDistricts(matches.join(', ')),
+        matches.isEmpty
+            ? strings.districtCount(province.districts.length)
+            : strings.matchingDistricts(matches.join(', ')),
       ),
       trailing: province.isMetropolitan
-          ? Chip(label: Text(strings.metropolitan), visualDensity: VisualDensity.compact)
+          ? Chip(
+              label: Text(strings.metropolitan),
+              visualDensity: VisualDensity.compact,
+            )
           : null,
       childrenPadding: const EdgeInsets.fromLTRB(Gap.md, 0, Gap.md, Gap.md),
       expandedAlignment: Alignment.centerLeft,
@@ -98,7 +123,9 @@ class _ProvinceTile extends StatelessWidget {
               Chip(
                 label: Text(district),
                 visualDensity: VisualDensity.compact,
-                backgroundColor: matches.contains(district) ? scheme.secondaryContainer : null,
+                backgroundColor: matches.contains(district)
+                    ? scheme.secondaryContainer
+                    : null,
               ),
           ],
         ),

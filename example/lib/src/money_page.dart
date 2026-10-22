@@ -42,28 +42,46 @@ class _MoneyPageState extends State<MoneyPage> {
             children: <Widget>[
               TextField(
                 controller: _amount,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true, signed: true),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                  signed: true,
+                ),
                 onChanged: (_) => setState(() {}),
                 decoration: InputDecoration(
                   labelText: strings.amount,
                   hintText: strings.amountHint,
                   suffixText: '₺',
                   prefixIcon: const Icon(Icons.payments_outlined),
-                  errorText: money == null && _amount.text.trim().isNotEmpty ? strings.invalidAmount : null,
+                  errorText: money == null && _amount.text.trim().isNotEmpty
+                      ? strings.invalidAmount
+                      : null,
                 ),
               ),
               const SizedBox(height: Gap.md),
-              Text(strings.wordCase, style: Theme.of(context).textTheme.labelLarge),
+              Text(
+                strings.wordCase,
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
               const SizedBox(height: Gap.sm),
               SegmentedButton<TurkishWordCase>(
                 showSelectedIcon: false,
                 segments: <ButtonSegment<TurkishWordCase>>[
-                  ButtonSegment<TurkishWordCase>(value: TurkishWordCase.title, label: Text(strings.caseTitle)),
-                  ButtonSegment<TurkishWordCase>(value: TurkishWordCase.upper, label: Text(strings.caseUpper)),
-                  ButtonSegment<TurkishWordCase>(value: TurkishWordCase.lower, label: Text(strings.caseLower)),
+                  ButtonSegment<TurkishWordCase>(
+                    value: TurkishWordCase.title,
+                    label: Text(strings.caseTitle),
+                  ),
+                  ButtonSegment<TurkishWordCase>(
+                    value: TurkishWordCase.upper,
+                    label: Text(strings.caseUpper),
+                  ),
+                  ButtonSegment<TurkishWordCase>(
+                    value: TurkishWordCase.lower,
+                    label: Text(strings.caseLower),
+                  ),
                 ],
                 selected: <TurkishWordCase>{_case},
-                onSelectionChanged: (Set<TurkishWordCase> value) => setState(() => _case = value.first),
+                onSelectionChanged: (Set<TurkishWordCase> value) =>
+                    setState(() => _case = value.first),
               ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
@@ -89,13 +107,22 @@ class _MoneyPageState extends State<MoneyPage> {
                 const Divider(),
                 ResultRow(
                   label: strings.inWords,
-                  value: money.toWords(wordCase: _case, currency: currency, subunit: subunit, separator: separator),
+                  value: money.toWords(
+                    wordCase: _case,
+                    currency: currency,
+                    subunit: subunit,
+                    separator: separator,
+                  ),
                 ),
                 const Divider(),
                 ResultRow(
                   label: strings.invoice,
-                  value:
-                      money.toInvoiceText(wordCase: _case, currency: currency, subunit: subunit, separator: separator),
+                  value: money.toInvoiceText(
+                    wordCase: _case,
+                    currency: currency,
+                    subunit: subunit,
+                    separator: separator,
+                  ),
                 ),
               ],
             ),

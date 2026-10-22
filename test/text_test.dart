@@ -23,8 +23,10 @@ void main() {
 
     test('round trip', () {
       const text = 'Iğdır İzmir ılık iyi ÇÖŞÜĞ';
-      expect(TurkishText.toLowerCase(TurkishText.toUpperCase(text)),
-          TurkishText.toLowerCase(text));
+      expect(
+        TurkishText.toLowerCase(TurkishText.toUpperCase(text)),
+        TurkishText.toLowerCase(text),
+      );
     });
 
     test('capitalize and title case', () {
@@ -33,8 +35,10 @@ void main() {
       expect(TurkishText.capitalize(''), '');
       expect(TurkishText.capitalize('😀x'), '😀x');
       expect('ışık ılık süt iç'.toTurkishTitleCase(), 'Işık Ilık Süt İç');
-      expect(TurkishText.toTitleCase("İSTANBUL'DA BİR GÜN"),
-          "İstanbul'da Bir Gün");
+      expect(
+        TurkishText.toTitleCase("İSTANBUL'DA BİR GÜN"),
+        "İstanbul'da Bir Gün",
+      );
       expect(TurkishText.toTitleCase('emirdağ-çay/ilgın'), 'Emirdağ-Çay/İlgın');
       expect('ankara'.toTurkishCapitalized(), 'Ankara');
     });
@@ -44,7 +48,9 @@ void main() {
     test('folds case, Turkish letters and circumflexes', () {
       expect(TurkishText.normalizeForSearch('  IĞDIR  Kâhta '), 'igdir kahta');
       expect(
-          TurkishText.normalizeForSearch('ÇĞIİÖŞÜ çğıiöşü'), 'cgiiosu cgiiosu');
+        TurkishText.normalizeForSearch('ÇĞIİÖŞÜ çğıiöşü'),
+        'cgiiosu cgiiosu',
+      );
       expect(TurkishText.normalizeForSearch('Hakkâri'), 'hakkari');
       expect(TurkishText.normalizeForSearch('Café Noël'), 'cafe noel');
       expect(TurkishText.normalizeForSearch('Özel'), 'ozel'); // decomposed Ö
@@ -70,11 +76,12 @@ void main() {
       ]..shuffle();
       TurkishText.sort(words);
       expect(
-          words,
-          <String>[
-            'ağaç', 'cam', 'çanta', 'ğ', 'gül', 'ılık', 'iğne', 'ozan', //
-            'öküz', 'sabun', 'şeker', 'uçak', 'üzüm', 'zeytin',
-          ]..sort(TurkishText.compare));
+        words,
+        <String>[
+          'ağaç', 'cam', 'çanta', 'ğ', 'gül', 'ılık', 'iğne', 'ozan', //
+          'öküz', 'sabun', 'şeker', 'uçak', 'üzüm', 'zeytin',
+        ]..sort(TurkishText.compare),
+      );
       expect(words.indexOf('gül') < words.indexOf('ğ'), isTrue);
       expect(words.indexOf('ılık') < words.indexOf('iğne'), isTrue);
       expect(words.indexOf('cam') < words.indexOf('çanta'), isTrue);
@@ -92,7 +99,7 @@ void main() {
         'İzmir',
         'ılık',
         'Ankara',
-        'adana'
+        'adana',
       ];
       TurkishText.sort(words);
       expect(words, <String>[
@@ -103,7 +110,7 @@ void main() {
         'ılık',
         'Istanbul',
         'iğne',
-        'İzmir'
+        'İzmir',
       ]);
     });
 
@@ -136,13 +143,15 @@ void main() {
         'İlgi',
         'ışık',
         'şık',
-        'sık'
+        'sık',
       ];
       for (final a in words) {
         for (final b in words) {
           expect(
-              TurkishText.compare(a, b).sign, -TurkishText.compare(b, a).sign,
-              reason: '$a/$b');
+            TurkishText.compare(a, b).sign,
+            -TurkishText.compare(b, a).sign,
+            reason: '$a/$b',
+          );
         }
       }
     });
@@ -153,7 +162,9 @@ void main() {
       expect(TurkishInputMask.phone.format('05321234567'), '0532 123 45 67');
       expect(TurkishInputMask.phone.format('5321234567'), '0532 123 45 67');
       expect(
-          TurkishInputMask.phone.format('+90 532 123 45 67'), '0532 123 45 67');
+        TurkishInputMask.phone.format('+90 532 123 45 67'),
+        '0532 123 45 67',
+      );
       expect(TurkishInputMask.phone.format('00905321234567'), '0532 123 45 67');
       expect(TurkishInputMask.phone.format('0532123456789'), '0532 123 45 67');
       expect(TurkishInputMask.phone.format('053'), '053');
@@ -164,30 +175,42 @@ void main() {
     });
 
     test('iban, ids and dates', () {
-      expect(TurkishInputMask.iban.format('tr330006100519786457841326'),
-          'TR33 0006 1005 1978 6457 8413 26');
+      expect(
+        TurkishInputMask.iban.format('tr330006100519786457841326'),
+        'TR33 0006 1005 1978 6457 8413 26',
+      );
       expect(TurkishInputMask.iban.format('33 0006 1'), 'TR33 0006 1');
       expect(
-          TurkishInputMask.tcKimlik.format('100-000-001-46-9'), '10000000146');
+        TurkishInputMask.tcKimlik.format('100-000-001-46-9'),
+        '10000000146',
+      );
       expect(TurkishInputMask.vergiKimlik.format('12345678901'), '1234567890');
       expect(TurkishInputMask.date.format('29102026'), '29.10.2026');
     });
 
     test('cursor follows the digits', () {
       // Typing the 5th digit at the end.
-      expect(
-          TurkishInputMask.phone.apply('0532 1'), (text: '0532 1', cursor: 6));
+      expect(TurkishInputMask.phone.apply('0532 1'), (
+        text: '0532 1',
+        cursor: 6,
+      ));
       // Cursor after "0532" in raw "05321234": stays after the 4th digit.
-      expect(TurkishInputMask.phone.apply('05321234', 4),
-          (text: '0532 123 4', cursor: 4));
+      expect(TurkishInputMask.phone.apply('05321234', 4), (
+        text: '0532 123 4',
+        cursor: 4,
+      ));
       // Inserting a digit in the middle.
-      expect(TurkishInputMask.date.apply('2910.2026', 3),
-          (text: '29.10.2026', cursor: 4));
+      expect(TurkishInputMask.date.apply('2910.2026', 3), (
+        text: '29.10.2026',
+        cursor: 4,
+      ));
       expect(TurkishInputMask.date.apply('29', 0), (text: '29', cursor: 0));
       expect(TurkishInputMask.date.apply('29', 99), (text: '29', cursor: 2));
       // Cursor beyond the digits that fit lands at the end.
-      expect(TurkishInputMask.tcKimlik.apply('123456789012', 12),
-          (text: '12345678901', cursor: 11));
+      expect(TurkishInputMask.tcKimlik.apply('123456789012', 12), (
+        text: '12345678901',
+        cursor: 11,
+      ));
     });
   });
 }

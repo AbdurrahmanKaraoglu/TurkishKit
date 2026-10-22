@@ -14,8 +14,14 @@ class TurkishMaskFormatter extends TextInputFormatter {
   final TurkishInputMask mask;
 
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
-    final TurkishMaskResult result = mask.apply(newValue.text, newValue.selection.end);
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    final TurkishMaskResult result = mask.apply(
+      newValue.text,
+      newValue.selection.end,
+    );
     return TextEditingValue(
       text: result.text,
       selection: TextSelection.collapsed(offset: result.cursor),
@@ -25,7 +31,12 @@ class TurkishMaskFormatter extends TextInputFormatter {
 
 /// A page scaffold with a large title, a subtitle and the language menu.
 class PageScaffold extends StatelessWidget {
-  const PageScaffold({super.key, required this.title, required this.subtitle, required this.children});
+  const PageScaffold({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.children,
+  });
 
   final String title;
   final String subtitle;
@@ -35,7 +46,10 @@ class PageScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(title: Text(title), actions: const <Widget>[LanguageMenu()]),
+      appBar: AppBar(
+        title: Text(title),
+        actions: const <Widget>[LanguageMenu()],
+      ),
       body: SafeArea(
         top: false,
         child: Center(
@@ -44,9 +58,17 @@ class PageScaffold extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.fromLTRB(Gap.md, 0, Gap.md, Gap.lg),
               children: <Widget>[
-                Text(subtitle, style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+                Text(
+                  subtitle,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
                 const SizedBox(height: Gap.md),
-                for (final Widget child in children) ...<Widget>[child, const SizedBox(height: Gap.md)],
+                for (final Widget child in children) ...<Widget>[
+                  child,
+                  const SizedBox(height: Gap.md),
+                ],
               ],
             ),
           ),
@@ -73,7 +95,12 @@ class SectionCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             if (title != null) ...<Widget>[
-              Text(title!, style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600)),
+              Text(
+                title!,
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
               const SizedBox(height: Gap.sm),
             ],
             child,
@@ -104,7 +131,12 @@ class ResultRow extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(label, style: theme.textTheme.labelMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+                Text(
+                  label,
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
                 const SizedBox(height: 2),
                 SelectableText(value, style: theme.textTheme.bodyLarge),
               ],
@@ -117,7 +149,12 @@ class ResultRow extends StatelessWidget {
               Clipboard.setData(ClipboardData(text: value));
               ScaffoldMessenger.of(context)
                 ..hideCurrentSnackBar()
-                ..showSnackBar(SnackBar(content: Text(strings.copied), duration: const Duration(seconds: 1)));
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text(strings.copied),
+                    duration: const Duration(seconds: 1),
+                  ),
+                );
             },
           ),
         ],
@@ -136,13 +173,24 @@ class LanguageMenu extends StatelessWidget {
     return PopupMenuButton<String>(
       tooltip: strings.language,
       icon: const Icon(Icons.translate_rounded),
-      onSelected: (String code) => appLocale.value = code.isEmpty ? null : Locale(code),
+      onSelected: (String code) =>
+          appLocale.value = code.isEmpty ? null : Locale(code),
       itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-        CheckedPopupMenuItem<String>(value: '', checked: appLocale.value == null, child: Text(strings.systemLanguage)),
         CheckedPopupMenuItem<String>(
-            value: 'tr', checked: appLocale.value?.languageCode == 'tr', child: const Text('Türkçe')),
+          value: '',
+          checked: appLocale.value == null,
+          child: Text(strings.systemLanguage),
+        ),
         CheckedPopupMenuItem<String>(
-            value: 'en', checked: appLocale.value?.languageCode == 'en', child: const Text('English')),
+          value: 'tr',
+          checked: appLocale.value?.languageCode == 'tr',
+          child: const Text('Türkçe'),
+        ),
+        CheckedPopupMenuItem<String>(
+          value: 'en',
+          checked: appLocale.value?.languageCode == 'en',
+          child: const Text('English'),
+        ),
       ],
     );
   }

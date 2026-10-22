@@ -52,7 +52,13 @@ class _HomeShellState extends State<HomeShell> {
     return Scaffold(
       body: IndexedStack(
         index: _index,
-        children: const <Widget>[ValidatePage(), MoneyPage(), TextPage(), ProvincesPage(), HolidaysPage()],
+        children: const <Widget>[
+          ValidatePage(),
+          MoneyPage(),
+          TextPage(),
+          ProvincesPage(),
+          HolidaysPage(),
+        ],
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _index,

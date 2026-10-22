@@ -44,12 +44,11 @@ final class TurkishProvince {
 /// package (no network needed).
 abstract final class TurkishProvinces {
   /// All 81 provinces, ordered by plate code.
-  static final List<TurkishProvince> all = List<TurkishProvince>.unmodifiable(
-    <TurkishProvince>[
-      for (final (plate, name, districts) in provinceData)
-        TurkishProvince._(plate, name, List<String>.unmodifiable(districts)),
-    ],
-  );
+  static final List<TurkishProvince> all =
+      List<TurkishProvince>.unmodifiable(<TurkishProvince>[
+        for (final (plate, name, districts) in provinceData)
+          TurkishProvince._(plate, name, List<String>.unmodifiable(districts)),
+      ]);
 
   static final Map<String, TurkishProvince> _byKey = <String, TurkishProvince>{
     for (final province in all)

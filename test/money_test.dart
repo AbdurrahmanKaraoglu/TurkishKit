@@ -57,20 +57,27 @@ void main() {
     test('BigInt up to the desilyon range', () {
       expect(lower(BigInt.from(10).pow(33)), 'bir desilyon');
       expect(lower(BigInt.from(10).pow(21) * BigInt.two), 'iki seksilyon');
-      expect(lower(-TurkishNumberWords.maxValue),
-          startsWith('eksi dokuz yüz doksan dokuz desilyon'));
-      expect(() => lower(TurkishNumberWords.maxValue + BigInt.one),
-          throwsRangeError);
+      expect(
+        lower(-TurkishNumberWords.maxValue),
+        startsWith('eksi dokuz yüz doksan dokuz desilyon'),
+      );
+      expect(
+        () => lower(TurkishNumberWords.maxValue + BigInt.one),
+        throwsRangeError,
+      );
       expect(() => lower(1.5), throwsArgumentError);
     });
 
     test('word cases and separators', () {
       expect(TurkishNumberWords.convert(1234), 'Bin İki Yüz Otuz Dört');
-      expect(TurkishNumberWords.convert(1234, wordCase: TurkishWordCase.upper),
-          'BİN İKİ YÜZ OTUZ DÖRT');
       expect(
-          TurkishNumberWords.convert(1234, wordCase: TurkishWordCase.sentence),
-          'Bin iki yüz otuz dört');
+        TurkishNumberWords.convert(1234, wordCase: TurkishWordCase.upper),
+        'BİN İKİ YÜZ OTUZ DÖRT',
+      );
+      expect(
+        TurkishNumberWords.convert(1234, wordCase: TurkishWordCase.sentence),
+        'Bin iki yüz otuz dört',
+      );
       expect(TurkishNumberWords.convert(61, separator: ''), 'AltmışBir');
       expect(TurkishNumberWords.words(31), <String>['otuz', 'bir']);
     });
@@ -102,24 +109,33 @@ void main() {
         '1.234.5',
         '1,',
         '-',
-        '1..234'
+        '1..234',
       ]) {
         expect(TurkishMoney.tryParse(text), isNull, reason: text);
-        expect(() => TurkishMoney.parse(text), throwsFormatException,
-            reason: text);
+        expect(
+          () => TurkishMoney.parse(text),
+          throwsFormatException,
+          reason: text,
+        );
       }
     });
 
     test('machine decimals', () {
       expect(
-          TurkishMoney.fromDecimalString('1234.50').kurus, BigInt.from(123450));
+        TurkishMoney.fromDecimalString('1234.50').kurus,
+        BigInt.from(123450),
+      );
       expect(TurkishMoney.fromDecimalString('-0.5').kurus, BigInt.from(-50));
       expect(TurkishMoney.fromDecimalString('.07').kurus, BigInt.from(7));
       expect(TurkishMoney.fromDecimalString('12').kurus, BigInt.from(1200));
-      expect(TurkishMoney.fromDecimalString('99999999999999999999.99').kurus,
-          BigInt.parse('9999999999999999999999'));
       expect(
-          () => TurkishMoney.fromDecimalString('1,5'), throwsFormatException);
+        TurkishMoney.fromDecimalString('99999999999999999999.99').kurus,
+        BigInt.parse('9999999999999999999999'),
+      );
+      expect(
+        () => TurkishMoney.fromDecimalString('1,5'),
+        throwsFormatException,
+      );
       expect(() => TurkishMoney.fromDecimalString('.'), throwsFormatException);
     });
 
@@ -176,61 +192,85 @@ void main() {
       expect(TurkishMoney.fromKurus(100).format(symbol: 'TL'), '1,00 TL');
       expect(TurkishMoney.fromKurus(100).format(symbolFirst: true), '₺1,00');
       expect(
-          TurkishMoney.fromKurus(123400)
-              .format(hideZeroKurus: true, symbol: ''),
-          '1.234');
+        TurkishMoney.fromKurus(123400).format(hideZeroKurus: true, symbol: ''),
+        '1.234',
+      );
       expect(TurkishMoney.fromKurus(123456789).toString(), '1.234.567,89 ₺');
       expect(TurkishMoney.fromKurus(-5).toDecimalString(), '-0.05');
       expect(TurkishMoney.fromKurus(123450).toDecimalString(), '1234.50');
     });
 
     test('words', () {
-      expect(TurkishMoney.fromDecimalString('1234.50').toWords(),
-          'Bin İki Yüz Otuz Dört Türk Lirası Elli Kuruş');
+      expect(
+        TurkishMoney.fromDecimalString('1234.50').toWords(),
+        'Bin İki Yüz Otuz Dört Türk Lirası Elli Kuruş',
+      );
       expect(TurkishMoney.zero.toWords(), 'Sıfır Türk Lirası');
       expect(TurkishMoney.fromKurus(50).toWords(), 'Elli Kuruş');
       expect(TurkishMoney.fromKurus(100).toWords(), 'Bir Türk Lirası');
-      expect(TurkishMoney.fromKurus(100).toWords(showZeroKurus: true),
-          'Bir Türk Lirası Sıfır Kuruş');
-      expect(TurkishMoney.fromKurus(-150).toWords(),
-          'Eksi Bir Türk Lirası Elli Kuruş');
+      expect(
+        TurkishMoney.fromKurus(100).toWords(showZeroKurus: true),
+        'Bir Türk Lirası Sıfır Kuruş',
+      );
+      expect(
+        TurkishMoney.fromKurus(-150).toWords(),
+        'Eksi Bir Türk Lirası Elli Kuruş',
+      );
       expect(TurkishMoney.fromKurus(-1).toWords(), 'Eksi Bir Kuruş');
-      expect(TurkishMoney.fromKurus(100000000000).toWords(),
-          'Bir Milyar Türk Lirası');
       expect(
-          TurkishMoney.fromKurus(123450)
-              .toWords(wordCase: TurkishWordCase.upper),
-          'BİN İKİ YÜZ OTUZ DÖRT TÜRK LİRASI ELLİ KURUŞ');
+        TurkishMoney.fromKurus(100000000000).toWords(),
+        'Bir Milyar Türk Lirası',
+      );
       expect(
-          TurkishMoney.fromKurus(123450)
-              .toWords(wordCase: TurkishWordCase.lower),
-          'bin iki yüz otuz dört türk lirası elli kuruş');
+        TurkishMoney.fromKurus(123450).toWords(wordCase: TurkishWordCase.upper),
+        'BİN İKİ YÜZ OTUZ DÖRT TÜRK LİRASI ELLİ KURUŞ',
+      );
+      expect(
+        TurkishMoney.fromKurus(123450).toWords(wordCase: TurkishWordCase.lower),
+        'bin iki yüz otuz dört türk lirası elli kuruş',
+      );
       expect(
         TurkishMoney.fromKurus(123450).toWords(
-            wordCase: TurkishWordCase.sentence, currency: 'TL', subunit: 'Kr'),
+          wordCase: TurkishWordCase.sentence,
+          currency: 'TL',
+          subunit: 'Kr',
+        ),
         'Bin iki yüz otuz dört TL elli Kr',
       );
       final tooBig = TurkishMoney.fromKurusBigInt(
-          (TurkishNumberWords.maxValue + BigInt.one) * BigInt.from(100));
+        (TurkishNumberWords.maxValue + BigInt.one) * BigInt.from(100),
+      );
       expect(tooBig.toWords, throwsRangeError);
     });
 
     test('invoice text', () {
       final amount = TurkishMoney.fromKurus(123450);
-      expect(amount.toInvoiceText(),
-          'Yalnız #Bin İki Yüz Otuz Dört Türk Lirası Elli Kuruş#');
-      expect(amount.toInvoiceText(separator: ''),
-          'Yalnız #BinİkiYüzOtuzDörtTürkLirasıElliKuruş#');
       expect(
-          amount.toInvoiceText(
-              wordCase: TurkishWordCase.upper, currency: 'TL', subunit: 'KR'),
-          'YALNIZ #BİN İKİ YÜZ OTUZ DÖRT TL ELLİ KR#');
+        amount.toInvoiceText(),
+        'Yalnız #Bin İki Yüz Otuz Dört Türk Lirası Elli Kuruş#',
+      );
       expect(
-          TurkishMoney.fromKurus(7)
-              .toInvoiceText(prefix: 'YALNIZ:', delimiter: ''),
-          'YALNIZ: Yedi Kuruş');
+        amount.toInvoiceText(separator: ''),
+        'Yalnız #BinİkiYüzOtuzDörtTürkLirasıElliKuruş#',
+      );
       expect(
-          TurkishMoney.zero.toInvoiceText(prefix: ''), '#Sıfır Türk Lirası#');
+        amount.toInvoiceText(
+          wordCase: TurkishWordCase.upper,
+          currency: 'TL',
+          subunit: 'KR',
+        ),
+        'YALNIZ #BİN İKİ YÜZ OTUZ DÖRT TL ELLİ KR#',
+      );
+      expect(
+        TurkishMoney.fromKurus(
+          7,
+        ).toInvoiceText(prefix: 'YALNIZ:', delimiter: ''),
+        'YALNIZ: Yedi Kuruş',
+      );
+      expect(
+        TurkishMoney.zero.toInvoiceText(prefix: ''),
+        '#Sıfır Türk Lirası#',
+      );
     });
   });
 
@@ -241,26 +281,36 @@ void main() {
       expect(TurkishNumberFormat.formatInteger(1000), '1.000');
       expect(TurkishNumberFormat.formatInteger(-1234567), '-1.234.567');
       expect(
-          TurkishNumberFormat.formatInteger(
-              BigInt.parse('12345678901234567890')),
-          '12.345.678.901.234.567.890');
-      expect(TurkishNumberFormat.formatInteger(1234567, groupSeparator: ' '),
-          '1 234 567');
+        TurkishNumberFormat.formatInteger(BigInt.parse('12345678901234567890')),
+        '12.345.678.901.234.567.890',
+      );
+      expect(
+        TurkishNumberFormat.formatInteger(1234567, groupSeparator: ' '),
+        '1 234 567',
+      );
       expect(() => TurkishNumberFormat.formatInteger('1'), throwsArgumentError);
     });
 
     test('format', () {
       expect(TurkishNumberFormat.format(1234.5), '1.234,50');
       expect(
-          TurkishNumberFormat.format(1234.567, fractionDigits: 1), '1.234,6');
+        TurkishNumberFormat.format(1234.567, fractionDigits: 1),
+        '1.234,6',
+      );
       expect(TurkishNumberFormat.format(-0.5), '-0,50');
       expect(TurkishNumberFormat.format(-0.001), '0,00');
       expect(
-          TurkishNumberFormat.format(1234567, fractionDigits: 0), '1.234.567');
-      expect(TurkishNumberFormat.format(1234567.891, grouping: false),
-          '1234567,89');
-      expect(() => TurkishNumberFormat.format(double.infinity),
-          throwsArgumentError);
+        TurkishNumberFormat.format(1234567, fractionDigits: 0),
+        '1.234.567',
+      );
+      expect(
+        TurkishNumberFormat.format(1234567.891, grouping: false),
+        '1234567,89',
+      );
+      expect(
+        () => TurkishNumberFormat.format(double.infinity),
+        throwsArgumentError,
+      );
     });
 
     test('parse', () {
@@ -278,8 +328,10 @@ void main() {
 
     test('round trip', () {
       for (final value in <num>[0, 1, 12.5, 999.99, 1000, 1234567.89, -42.1]) {
-        expect(TurkishNumberFormat.parse(TurkishNumberFormat.format(value)),
-            closeTo(value, 1e-9));
+        expect(
+          TurkishNumberFormat.parse(TurkishNumberFormat.format(value)),
+          closeTo(value, 1e-9),
+        );
       }
     });
   });

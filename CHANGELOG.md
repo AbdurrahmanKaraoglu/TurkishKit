@@ -1,3 +1,45 @@
+## 0.1.1
+
+* Phone numbers with a trunk 0 after the country code are accepted:
+  `+90 (0532) 123 45 67`, `0090 0532 …`, `90 0532 …`.
+* `TurkishInputMask.phone` absorbs a country code typed digit by digit
+  (`+90 5…` no longer becomes `0905…`).
+* IBANs written with dashes are accepted (`normalizeIban` removes them).
+* `TurkishNumberFormat.format` works for doubles of 1e21 and more (it
+  printed `1e.+21`).
+* `TurkishNumberFormat.tryParse` returns a `double` for integers too large
+  for an `int` instead of `null`.
+* Thousands separators must be consistent: `1.234 567` is rejected (applies
+  to `TurkishMoney.parse` too).
+* `TurkishText.compare`: ties are broken like Unicode collation, circumflex
+  first and then case, over the whole string (`kahta`, `Kahta`, `kâhta`,
+  `Kâhta`).
+* Example app: the business-day calculator shows a message instead of an
+  error when the result falls outside 2020–2035.
+* README: every example is now checked by `test/readme_test.dart`; links to
+  the author's other packages.
+
+**Türkçe**
+
+* Ülke kodundan sonra 0 içeren telefon numaraları kabul ediliyor:
+  `+90 (0532) 123 45 67`, `0090 0532 …`, `90 0532 …`.
+* `TurkishInputMask.phone`, rakam rakam yazılan ülke kodunu yutuyor
+  (`+90 5…` artık `0905…` olmuyor).
+* Tireli yazılmış IBAN kabul ediliyor (`normalizeIban` tireleri siliyor).
+* `TurkishNumberFormat.format`, 1e21 ve üstü double değerlerde doğru çalışıyor
+  (önceden `1e.+21` yazıyordu).
+* `TurkishNumberFormat.tryParse`, `int`'e sığmayan tam sayılar için `null`
+  yerine `double` döndürüyor.
+* Binlik ayırıcılar tutarlı olmalı: `1.234 567` reddediliyor
+  (`TurkishMoney.parse` için de).
+* `TurkishText.compare`: eşitlikler Unicode sıralamasındaki gibi, tüm metin
+  boyunca önce şapkaya sonra büyük/küçük harfe göre bozuluyor (`kahta`,
+  `Kahta`, `kâhta`, `Kâhta`).
+* Örnek uygulama: iş günü hesabı sonuç 2020–2035 dışına çıkınca hata yerine
+  mesaj gösteriyor.
+* README: tüm örnekler artık `test/readme_test.dart` ile doğrulanıyor;
+  geliştiricinin diğer paketlerine bağlantılar eklendi.
+
 ## 0.1.0
 
 * First release.
@@ -18,9 +60,7 @@
   2429, Ramazan and Kurban Bayramı 2020–2035 from the Diyanet calendar,
   arife half days, working-day arithmetic.
 
----
-
-## 0.1.0 (Türkçe)
+**Türkçe**
 
 * İlk sürüm.
 * `TurkishValidators`: T.C. kimlik no, vergi kimlik no (VKN), vergi numarası

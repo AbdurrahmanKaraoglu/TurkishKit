@@ -50,8 +50,7 @@ abstract final class TurkishNumberWords {
     Object value, {
     TurkishWordCase wordCase = TurkishWordCase.title,
     String separator = ' ',
-  }) =>
-      applyWordCase(words(value), wordCase, separator: separator);
+  }) => applyWordCase(words(value), wordCase, separator: separator);
 
   /// The lower-case words of [value] as a list, for example
   /// `['bin', 'iki', 'yüz', 'otuz', 'dört']` for 1234.

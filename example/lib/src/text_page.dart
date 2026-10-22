@@ -6,7 +6,18 @@ import 'app_theme.dart';
 import 'widgets.dart';
 
 const List<String> _words = <String>[
-  'Zonguldak', 'Iğdır', 'Çorum', 'İzmir', 'Uşak', 'Şırnak', 'Ağrı', 'Ordu', 'Ödemiş', 'Siirt', 'Ünye', 'Gümüşhane', //
+  'Zonguldak',
+  'Iğdır',
+  'Çorum',
+  'İzmir',
+  'Uşak',
+  'Şırnak',
+  'Ağrı',
+  'Ordu',
+  'Ödemiş',
+  'Siirt',
+  'Ünye',
+  'Gümüşhane', //
 ];
 
 class TextPage extends StatefulWidget {
@@ -17,7 +28,9 @@ class TextPage extends StatefulWidget {
 }
 
 class _TextPageState extends State<TextPage> {
-  final TextEditingController _input = TextEditingController(text: 'ışık ılık süt iç, İSTANBUL');
+  final TextEditingController _input = TextEditingController(
+    text: 'ışık ılık süt iç, İSTANBUL',
+  );
 
   @override
   void dispose() {
@@ -44,16 +57,34 @@ class _TextPageState extends State<TextPage> {
               TextField(
                 controller: _input,
                 onChanged: (_) => setState(() {}),
-                decoration: InputDecoration(labelText: strings.input, prefixIcon: const Icon(Icons.text_fields)),
+                decoration: InputDecoration(
+                  labelText: strings.input,
+                  prefixIcon: const Icon(Icons.text_fields),
+                ),
               ),
               const SizedBox(height: Gap.sm),
-              ResultRow(label: strings.upperCase, value: text.toTurkishUpperCase()),
-              _DefaultHint(label: strings.dartDefault, value: text.toUpperCase()),
+              ResultRow(
+                label: strings.upperCase,
+                value: text.toTurkishUpperCase(),
+              ),
+              _DefaultHint(
+                label: strings.dartDefault,
+                value: text.toUpperCase(),
+              ),
               const Divider(),
-              ResultRow(label: strings.lowerCase, value: text.toTurkishLowerCase()),
-              _DefaultHint(label: strings.dartDefault, value: text.toLowerCase()),
+              ResultRow(
+                label: strings.lowerCase,
+                value: text.toTurkishLowerCase(),
+              ),
+              _DefaultHint(
+                label: strings.dartDefault,
+                value: text.toLowerCase(),
+              ),
               const Divider(),
-              ResultRow(label: strings.titleCase, value: text.toTurkishTitleCase()),
+              ResultRow(
+                label: strings.titleCase,
+                value: text.toTurkishTitleCase(),
+              ),
               const Divider(),
               ResultRow(label: strings.searchKey, value: text.toSearchKey()),
             ],
@@ -64,16 +95,30 @@ class _TextPageState extends State<TextPage> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Expanded(child: _SortColumn(title: strings.turkishOrder, words: turkish, highlight: true)),
+              Expanded(
+                child: _SortColumn(
+                  title: strings.turkishOrder,
+                  words: turkish,
+                  highlight: true,
+                ),
+              ),
               const SizedBox(width: Gap.md),
-              Expanded(child: _SortColumn(title: strings.codeUnitOrder, words: plain, highlight: false)),
+              Expanded(
+                child: _SortColumn(
+                  title: strings.codeUnitOrder,
+                  words: plain,
+                  highlight: false,
+                ),
+              ),
             ],
           ),
         ),
         Text(
           'TurkishText.compare · List.sort()',
           textAlign: TextAlign.center,
-          style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
         ),
       ],
     );
@@ -100,7 +145,11 @@ class _DefaultHint extends StatelessWidget {
 }
 
 class _SortColumn extends StatelessWidget {
-  const _SortColumn({required this.title, required this.words, required this.highlight});
+  const _SortColumn({
+    required this.title,
+    required this.words,
+    required this.highlight,
+  });
 
   final String title;
   final List<String> words;
@@ -115,14 +164,19 @@ class _SortColumn extends StatelessWidget {
         Text(
           title,
           style: theme.textTheme.labelLarge?.copyWith(
-            color: highlight ? theme.colorScheme.primary : theme.colorScheme.onSurfaceVariant,
+            color: highlight
+                ? theme.colorScheme.primary
+                : theme.colorScheme.onSurfaceVariant,
           ),
         ),
         const SizedBox(height: Gap.sm),
         for (int i = 0; i < words.length; i++)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 2),
-            child: Text('${i + 1}. ${words[i]}', style: theme.textTheme.bodyMedium),
+            child: Text(
+              '${i + 1}. ${words[i]}',
+              style: theme.textTheme.bodyMedium,
+            ),
           ),
       ],
     );

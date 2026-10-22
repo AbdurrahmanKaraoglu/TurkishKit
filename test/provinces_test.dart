@@ -9,8 +9,10 @@ void main() {
     }
     expect(TurkishProvinces.districtCount, 973);
     expect(TurkishProvinces.all.where((p) => p.isMetropolitan), hasLength(30));
-    expect(TurkishProvinces.all.where((p) => p.districts.contains('Merkez')),
-        hasLength(51));
+    expect(
+      TurkishProvinces.all.where((p) => p.districts.contains('Merkez')),
+      hasLength(51),
+    );
   });
 
   test('well-known plate codes', () {
@@ -20,8 +22,9 @@ void main() {
       34: 'İstanbul', 35: 'İzmir', 46: 'Kahramanmaraş', 63: 'Şanlıurfa',
       76: 'Iğdır', 81: 'Düzce',
     };
-    known.forEach((plate, name) =>
-        expect(TurkishProvinces.byPlateCode(plate)!.name, name));
+    known.forEach(
+      (plate, name) => expect(TurkishProvinces.byPlateCode(plate)!.name, name),
+    );
     expect(TurkishProvinces.byPlateCode(0), isNull);
     expect(TurkishProvinces.byPlateCode(82), isNull);
     expect(TurkishProvinces.byPlateCode(6)!.plateCodeText, '06');
@@ -36,8 +39,11 @@ void main() {
 
   test('districts are unique per province and sorted the Turkish way', () {
     for (final province in TurkishProvinces.all) {
-      expect(province.districts.toSet(), hasLength(province.districts.length),
-          reason: province.name);
+      expect(
+        province.districts.toSet(),
+        hasLength(province.districts.length),
+        reason: province.name,
+      );
       final sorted = [...province.districts]..sort(TurkishText.compare);
       expect(province.districts, sorted, reason: province.name);
       expect(() => province.districts.add('x'), throwsUnsupportedError);
@@ -56,14 +62,15 @@ void main() {
     final result = TurkishProvinces.search('kar').map((p) => p.name).toList();
     expect(result.first, 'Kars'); // prefix matches, in plate order
     expect(
-        result,
-        containsAll(<String>[
-          'Karabük',
-          'Karaman',
-          'Kars',
-          'Afyonkarahisar',
-          'Ankara'
-        ]));
+      result,
+      containsAll(<String>[
+        'Karabük',
+        'Karaman',
+        'Kars',
+        'Afyonkarahisar',
+        'Ankara',
+      ]),
+    );
     expect(TurkishProvinces.search(''), hasLength(81));
     expect(TurkishProvinces.search('zzz'), isEmpty);
   });
@@ -74,12 +81,15 @@ void main() {
     expect(istanbul.hasDistrict('kagithane'), isTrue);
     expect(istanbul.hasDistrict('Kâğıthane'), isTrue);
     expect(istanbul.hasDistrict('Çankaya'), isFalse);
-    expect(TurkishProvinces.byName('Ankara')!.districts,
-        contains('Kahramankazan'));
+    expect(
+      TurkishProvinces.byName('Ankara')!.districts,
+      contains('Kahramankazan'),
+    );
     expect(TurkishProvinces.byName('Samsun')!.districts, contains('19 Mayıs'));
     expect(TurkishProvinces.byName('Bolu')!.isMetropolitan, isFalse);
-    final eregli =
-        TurkishProvinces.provincesWithDistrict('ereğli').map((p) => p.name);
+    final eregli = TurkishProvinces.provincesWithDistrict(
+      'ereğli',
+    ).map((p) => p.name);
     expect(eregli, containsAll(<String>['Konya', 'Zonguldak']));
     expect(TurkishProvinces.provincesWithDistrict('Merkez'), hasLength(51));
   });

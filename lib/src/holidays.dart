@@ -22,7 +22,9 @@ enum TurkishHolidayKind {
 
   /// 15 Temmuz, Demokrasi ve Millî Birlik Günü (a holiday since 2017).
   democracyDay(
-      'Demokrasi ve Millî Birlik Günü', 'Democracy and National Unity Day'),
+    'Demokrasi ve Millî Birlik Günü',
+    'Democracy and National Unity Day',
+  ),
 
   /// 30 Ağustos, Zafer Bayramı.
   victoryDay('Zafer Bayramı', 'Victory Day'),
@@ -139,14 +141,15 @@ abstract final class TurkishHolidays {
   static List<TurkishHoliday> forYear(int year) {
     _checkYear(year);
     return _cache.putIfAbsent(year, () {
-      final holidays = <TurkishHoliday>[
-        ...fixedForYear(year),
-        for (final holiday in _religious)
-          if (holiday.date.year == year) holiday,
-      ]..sort((a, b) {
-          final byDate = a.date.compareTo(b.date);
-          return byDate != 0 ? byDate : a.kind.index - b.kind.index;
-        });
+      final holidays =
+          <TurkishHoliday>[
+            ...fixedForYear(year),
+            for (final holiday in _religious)
+              if (holiday.date.year == year) holiday,
+          ]..sort((a, b) {
+            final byDate = a.date.compareTo(b.date);
+            return byDate != 0 ? byDate : a.kind.index - b.kind.index;
+          });
       return List<TurkishHoliday>.unmodifiable(holidays);
     });
   }
@@ -160,16 +163,22 @@ abstract final class TurkishHolidays {
     return <TurkishHoliday>[
       TurkishHoliday._(DateTime(year, 1, 1), TurkishHolidayKind.newYear),
       TurkishHoliday._(
-          DateTime(year, 4, 23), TurkishHolidayKind.nationalSovereigntyDay),
+        DateTime(year, 4, 23),
+        TurkishHolidayKind.nationalSovereigntyDay,
+      ),
       if (year >= 2009)
         TurkishHoliday._(DateTime(year, 5, 1), TurkishHolidayKind.labourDay),
       TurkishHoliday._(DateTime(year, 5, 19), TurkishHolidayKind.youthDay),
       if (year >= 2017)
         TurkishHoliday._(
-            DateTime(year, 7, 15), TurkishHolidayKind.democracyDay),
+          DateTime(year, 7, 15),
+          TurkishHolidayKind.democracyDay,
+        ),
       TurkishHoliday._(DateTime(year, 8, 30), TurkishHolidayKind.victoryDay),
       TurkishHoliday._(
-          DateTime(year, 10, 28), TurkishHolidayKind.republicDayEve),
+        DateTime(year, 10, 28),
+        TurkishHolidayKind.republicDayEve,
+      ),
       TurkishHoliday._(DateTime(year, 10, 29), TurkishHolidayKind.republicDay),
     ];
   }
@@ -179,10 +188,10 @@ abstract final class TurkishHolidays {
   ///
   /// Throws a [RangeError] if the year is outside [firstYear]–[lastYear].
   static List<TurkishHoliday> on(DateTime date) => <TurkishHoliday>[
-        for (final holiday in forYear(date.year))
-          if (holiday.date.month == date.month && holiday.date.day == date.day)
-            holiday,
-      ];
+    for (final holiday in forYear(date.year))
+      if (holiday.date.month == date.month && holiday.date.day == date.day)
+        holiday,
+  ];
 
   /// Whether [date] is a full-day holiday or, with [includeHalfDays], also
   /// an arife afternoon.
@@ -214,8 +223,13 @@ abstract final class TurkishHolidays {
 
   static void _checkYear(int year) {
     if (!isSupportedYear(year)) {
-      throw RangeError.range(year, firstYear, lastYear, 'year',
-          'Religious holiday dates are only available for');
+      throw RangeError.range(
+        year,
+        firstYear,
+        lastYear,
+        'year',
+        'Religious holiday dates are only available for',
+      );
     }
   }
 
@@ -269,12 +283,15 @@ class TurkishBusinessCalendar {
     this.halfDayIsBusinessDay = true,
     Iterable<DateTime> extraHolidays = const <DateTime>[],
     Iterable<DateTime> extraBusinessDays = const <DateTime>[],
-  })  : weekendDays = Set<int>.unmodifiable(weekendDays),
-        _extraHolidays = extraHolidays.map(_key).toSet(),
-        _extraBusinessDays = extraBusinessDays.map(_key).toSet() {
+  }) : weekendDays = Set<int>.unmodifiable(weekendDays),
+       _extraHolidays = extraHolidays.map(_key).toSet(),
+       _extraBusinessDays = extraBusinessDays.map(_key).toSet() {
     if (this.weekendDays.length >= 7) {
       throw ArgumentError.value(
-          weekendDays, 'weekendDays', 'leaves no working day');
+        weekendDays,
+        'weekendDays',
+        'leaves no working day',
+      );
     }
   }
 
@@ -298,8 +315,10 @@ class TurkishBusinessCalendar {
     if (_extraHolidays.contains(key)) return false;
     final day = DateTime.utc(date.year, date.month, date.day);
     if (weekendDays.contains(day.weekday)) return false;
-    return !TurkishHolidays.isHoliday(date,
-        includeHalfDays: !halfDayIsBusinessDay);
+    return !TurkishHolidays.isHoliday(
+      date,
+      includeHalfDays: !halfDayIsBusinessDay,
+    );
   }
 
   /// The date [days] working days after [date] (before it if [days] is
