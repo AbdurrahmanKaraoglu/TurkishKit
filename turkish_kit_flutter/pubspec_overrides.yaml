@@ -1,4 +1,0 @@
-# Development only: use the turkish_kit package next to this one.
-dependency_overrides:
-  turkish_kit:
-    path: ../turkish_kit
