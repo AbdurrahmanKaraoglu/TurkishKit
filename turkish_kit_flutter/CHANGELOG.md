@@ -1,3 +1,13 @@
+## 0.2.1
+
+* DOCS: README "Other packages" list updated to all 11 other packages by the
+  author, with links to pub.dev.
+
+**Türkçe**
+
+* DOCS: README'deki "Diğer paketler" listesi geliştiricinin diğer 11 paketini
+  pub.dev bağlantılarıyla gösterecek şekilde güncellendi.
+
 ## 0.2.0
 
 * First release, versioned together with turkish_kit 0.2.0.

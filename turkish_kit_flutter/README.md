@@ -108,8 +108,19 @@ parsing of amounts follow one set of rules, shared with `TurkishMoney`.
 
 ## Other packages
 
-[turkish_kit](https://pub.dev/packages/turkish_kit) and more on
-[pub.dev](https://pub.dev/publishers/abdurrahmankaraoglu.com/packages).
+More packages by the same author on [pub.dev](https://pub.dev/publishers/abdurrahmankaraoglu.com/packages):
+
+* [google_maps_polyline](https://pub.dev/packages/google_maps_polyline): Google Directions routes and polyline encode/decode (pure Dart)
+* [marker_crafter](https://pub.dev/packages/marker_crafter): Custom Google Maps markers drawn with Canvas
+* [animated_route_marker](https://pub.dev/packages/animated_route_marker): Smoothly animated map marker along a route or live GPS
+* [advanced_background_locator](https://pub.dev/packages/advanced_background_locator): Background location tracking plugin (Android/iOS)
+* [advanced_geofence](https://pub.dev/packages/advanced_geofence): Pure Dart geofencing engine: enter, exit and dwell events
+* [route_simulator](https://pub.dev/packages/route_simulator): Realistic fake GPS streams for testing and demos
+* [background_doctor](https://pub.dev/packages/background_doctor): Diagnoses why background work stops on Android and why the app was killed
+* [scan_tally](https://pub.dev/packages/scan_tally): Continuous barcode scanning for stock counts: dedupe, tally, feedback, GS1
+* [scan_tally_mobile_scanner](https://pub.dev/packages/scan_tally_mobile_scanner): mobile_scanner camera adapter for scan_tally
+* [turkish_kit](https://pub.dev/packages/turkish_kit): Turkish validators, money in words, casing, provinces, holidays (pure Dart)
+* [flutter_toastify](https://pub.dev/packages/flutter_toastify): Animated toast notifications
 
 ## License
 
@@ -175,6 +186,22 @@ kütüphanede kullanılsa bile oralarda hiç kullanılamaz. Bu yüzden biçim
 kuralları (`TurkishMoneyInputMask`, `TurkishInputMask`) `turkish_kit`'te
 kalır; bu paket onları yalnızca Flutter'a bağlar. Tutar biçimleme ve
 ayrıştırma `TurkishMoney` ile aynı kuralları paylaşır.
+
+### Diğer paketler
+
+Aynı geliştiricinin [pub.dev](https://pub.dev/publishers/abdurrahmankaraoglu.com/packages)'deki diğer paketleri:
+
+* [google_maps_polyline](https://pub.dev/packages/google_maps_polyline): Google Directions rotası ve polyline kodlama/çözme (saf Dart)
+* [marker_crafter](https://pub.dev/packages/marker_crafter): Canvas ile çizilen özel Google Maps işaretçileri
+* [animated_route_marker](https://pub.dev/packages/animated_route_marker): Rota ya da canlı GPS üzerinde akıcı hareket eden harita işaretçisi
+* [advanced_background_locator](https://pub.dev/packages/advanced_background_locator): Arka planda konum takibi eklentisi (Android/iOS)
+* [advanced_geofence](https://pub.dev/packages/advanced_geofence): Saf Dart geofence motoru: giriş, çıkış ve bekleme olayları
+* [route_simulator](https://pub.dev/packages/route_simulator): Test ve demo için gerçekçi sahte GPS akışı
+* [background_doctor](https://pub.dev/packages/background_doctor): Android'de arka plan işinin neden durduğunu ve uygulamanın neden kapandığını teşhis eder
+* [scan_tally](https://pub.dev/packages/scan_tally): Stok sayımı için sürekli barkod okutma: tekrar ayıklama, sayım, geri bildirim, GS1
+* [scan_tally_mobile_scanner](https://pub.dev/packages/scan_tally_mobile_scanner): scan_tally için mobile_scanner kamera adaptörü
+* [turkish_kit](https://pub.dev/packages/turkish_kit): Türkçe doğrulayıcılar, tutarı yazıyla yazma, harf dönüşümü, il/ilçe, tatiller (saf Dart)
+* [flutter_toastify](https://pub.dev/packages/flutter_toastify): Animasyonlu toast bildirimleri
 
 ### Lisans
 
