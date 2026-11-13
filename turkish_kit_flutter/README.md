@@ -22,22 +22,22 @@ Türkçe açıklama için [aşağıya](#türkçe) bakın.
 
 ```yaml
 dependencies:
-  turkish_kit_flutter: ^0.3.0
+  turkish_kit_flutter: ^0.3.1
 ```
 
 ```dart
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:turkish_kit_flutter/turkish_kit_flutter.dart';
 ```
 
-Requires Flutter 3.47 or later (Dart 3.13). The widgets are built on
-[material_ui](https://pub.dev/packages/material_ui), the package that replaces
-`package:flutter/material.dart` from Flutter 3.50 on. Take `InputDecoration`
-and the other Material types you pass to `TurkishMoneyField` from
-`package:material_ui/material_ui.dart`. The types of
-`package:flutter/material.dart` are separate classes and are not accepted.
-`dart fix --apply --code=migrate_design_widgets` (Flutter 3.50) changes the
-imports of your app for you.
+Works in classic apps built with `package:flutter/material.dart` (they keep
+their theme) and in apps built with
+[material_ui](https://pub.dev/packages/material_ui), the replacement that
+Flutter 3.50 recommends. `decoration` takes `flutter/material`'s
+`InputDecoration`; in a material_ui app import it with a prefix
+(`import 'package:flutter/material.dart' as fm;`). There the field uses the
+default `flutter/material` theme and English Material strings, because the
+two libraries do not share theme or localization types.
 
 ## Money field
 
@@ -157,17 +157,17 @@ MIT. See [LICENSE](LICENSE).
 
 ```yaml
 dependencies:
-  turkish_kit_flutter: ^0.3.0
+  turkish_kit_flutter: ^0.3.1
 ```
 
-Flutter 3.47 veya üstü (Dart 3.13) gerekir. Widget'lar, Flutter 3.50'den
-itibaren `package:flutter/material.dart`'ın yerini alan
-[material_ui](https://pub.dev/packages/material_ui) paketiyle yazıldı.
-`TurkishMoneyField`'a verdiğiniz `InputDecoration` ve diğer Material türlerini
-`package:material_ui/material_ui.dart`'tan alın. `package:flutter/material.dart`
-türleri ayrı sınıflardır ve kabul edilmez. Uygulamanızdaki importları
-`dart fix --apply --code=migrate_design_widgets` (Flutter 3.50) sizin için
-değiştirir.
+`package:flutter/material.dart` ile yazılmış klasik uygulamalarda (kendi
+temalarıyla) ve Flutter 3.50'nin önerdiği
+[material_ui](https://pub.dev/packages/material_ui) ile yazılmış uygulamalarda
+çalışır. `decoration`, `flutter/material`'ın `InputDecoration` sınıfını alır;
+material_ui uygulamasında onu önekle içe aktarın
+(`import 'package:flutter/material.dart' as fm;`). Orada alan varsayılan
+`flutter/material` temasını ve İngilizce Material metinlerini kullanır, çünkü
+iki kütüphane tema ve yerelleştirme türlerini paylaşmaz.
 
 ### Para alanı
 

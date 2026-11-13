@@ -1,7 +1,7 @@
 // A minimal form with a Turkish money field and a phone field.
 // The full demo app (Turkish/English, all features) is in the repository:
 // https://github.com/AbdurrahmanKaraoglu/TurkishKit/tree/main/turkish_kit/example
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:turkish_kit_flutter/turkish_kit_flutter.dart';
 
 void main() => runApp(const MaterialApp(home: PaymentForm()));
@@ -31,8 +31,9 @@ class _PaymentFormState extends State<PaymentForm> {
   void _submit() {
     if (_form.currentState!.validate()) {
       final TurkishMoney money = _amount.money!;
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(money.toInvoiceText())));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(money.toInvoiceText())));
     }
   }
 

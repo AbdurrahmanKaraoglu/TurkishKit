@@ -21,7 +21,7 @@ Türkçe açıklama için [aşağıya](#türkçe) bakın.
 
 ```yaml
 dependencies:
-  turkish_kit: ^0.3.0
+  turkish_kit: ^0.3.1
 ```
 
 ```dart
@@ -76,7 +76,7 @@ them for Flutter: `TurkishInputMaskFormatter`, `TurkishMoneyInputFormatter`,
 `TurkishMoneyController` and a ready-made `TurkishMoneyField`.
 
 ```dart
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:turkish_kit_flutter/turkish_kit_flutter.dart'; // also exports turkish_kit
 
 TextFormField(
@@ -285,7 +285,7 @@ sunucuda, komut satırında ve web'de çalışır).
 
 ```yaml
 dependencies:
-  turkish_kit: ^0.3.0
+  turkish_kit: ^0.3.1
 ```
 
 ### Doğrulama

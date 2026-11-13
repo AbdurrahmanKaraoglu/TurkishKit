@@ -1,3 +1,19 @@
+## 0.3.1
+
+* No API changes; the version follows turkish_kit_flutter 0.3.1, which fixes
+  a crash of 0.3.0's money field in classic `flutter/material` apps.
+* Example app: back to `package:flutter/material.dart`, like most apps
+  (Android Gradle Plugin 9.3.1, Gradle 9.5.0 and Kotlin 2.4.20 stay).
+
+**Türkçe**
+
+* API değişikliği yok; sürüm, 0.3.0'daki para alanının klasik
+  `flutter/material` uygulamalarında çökmesini düzelten turkish_kit_flutter
+  0.3.1 ile hizalandı.
+* Örnek uygulama, çoğu uygulama gibi yeniden `package:flutter/material.dart`
+  kullanıyor (Android Gradle Plugin 9.3.1, Gradle 9.5.0 ve Kotlin 2.4.20
+  kalıyor).
+
 ## 0.3.0
 
 * No API changes; the version follows turkish_kit_flutter 0.3.0.

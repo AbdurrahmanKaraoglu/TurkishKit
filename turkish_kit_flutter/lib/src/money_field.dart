@@ -1,4 +1,9 @@
-import 'package:material_ui/material_ui.dart';
+// Deliberately the classic Material library: almost every app still uses it,
+// and its Material/Theme/localizations types differ from material_ui's. A
+// field built from material_ui crashed in those apps (turkish_kit_flutter
+// 0.3.0). material_ui apps are handled in build(). Deprecated in Flutter 3.50.
+// ignore: deprecated_member_use
+import 'package:flutter/material.dart';
 import 'package:turkish_kit/turkish_kit.dart';
 
 import 'formatters.dart';
@@ -175,7 +180,7 @@ class _TurkishMoneyFieldState extends State<TurkishMoneyField> {
   @override
   Widget build(BuildContext context) {
     final TurkishMoneyInputMask mask = _controller.mask;
-    return TextFormField(
+    Widget field = TextFormField(
       controller: _controller,
       focusNode: _focusNode,
       decoration: widget.decoration,
@@ -205,5 +210,25 @@ class _TurkishMoneyFieldState extends State<TurkishMoneyField> {
         return widget.validator?.call(money);
       },
     );
+    // Apps built with package:material_ui (or without any Material app) have
+    // no flutter/material Material or MaterialLocalizations above the field.
+    // Provide neutral ones only then, so classic apps keep their own.
+    if (Localizations.of<MaterialLocalizations>(
+          context,
+          MaterialLocalizations,
+        ) ==
+        null) {
+      field = Localizations.override(
+        context: context,
+        delegates: const <LocalizationsDelegate<Object>>[
+          DefaultMaterialLocalizations.delegate,
+        ],
+        child: field,
+      );
+    }
+    if (Material.maybeOf(context) == null) {
+      field = Material(type: MaterialType.transparency, child: field);
+    }
+    return field;
   }
 }

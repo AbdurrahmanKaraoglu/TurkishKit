@@ -1,3 +1,36 @@
+## 0.3.1
+
+* **Fix:** 0.3.0 crashed in classic apps built with
+  `package:flutter/material.dart` ("No Material widget found"), which is
+  almost every app today: the field was built from material_ui, whose
+  Material, Theme and localization types differ from flutter/material's.
+  `TurkishMoneyField` uses `flutter/material` again (as in 0.2.x), so classic
+  apps keep their theme. In material_ui apps (or without a Material app) it
+  adds a transparent `Material` and default Material localizations only when
+  they are missing. If you use 0.3.0, update.
+* `decoration` takes `flutter/material`'s `InputDecoration` again (as in
+  0.2.x). Flutter 3.32 / Dart 3.8 or later again; material_ui is only a dev
+  dependency for tests.
+* Tests run the field in a classic app, a material_ui app and a plain
+  `WidgetsApp`, on Flutter 3.47 and 3.50.
+
+**Türkçe**
+
+* **Düzeltme:** 0.3.0, `package:flutter/material.dart` ile yazılmış klasik
+  uygulamalarda ("No Material widget found" hatasıyla) çöküyordu; bu, bugün
+  neredeyse tüm uygulamalar demek. Alan material_ui ile kurulmuştu ve onun
+  Material, Theme ve yerelleştirme türleri flutter/material'ınkilerden farklı.
+  `TurkishMoneyField` yeniden (0.2.x'teki gibi) `flutter/material` kullanıyor;
+  klasik uygulamalar kendi temalarını koruyor. material_ui uygulamalarında
+  (ya da Material uygulaması yoksa) yalnızca eksik olduklarında şeffaf bir
+  `Material` ve varsayılan Material yerelleştirmesi ekleniyor. 0.3.0
+  kullanıyorsanız güncelleyin.
+* `decoration` yeniden `flutter/material`'ın `InputDecoration` sınıfını alıyor
+  (0.2.x'teki gibi). Yine Flutter 3.32 / Dart 3.8 ve üstüyle çalışıyor;
+  material_ui yalnızca testler için geliştirme bağımlılığı.
+* Testler alanı klasik uygulamada, material_ui uygulamasında ve düz
+  `WidgetsApp` içinde, Flutter 3.47 ve 3.50'de çalıştırıyor.
+
 ## 0.3.0
 
 * **Breaking:** the widgets now use

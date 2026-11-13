@@ -41,14 +41,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.19.1"
-  cupertino_ui:
-    dependency: transitive
-    description:
-      name: cupertino_ui
-      sha256: "369e39a1c5c030a6212589c3da1809920b1c2cfade7b02aade7695bfa4b88c3a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.6"
   fake_async:
     dependency: transitive
     description:
@@ -71,7 +63,7 @@ packages:
     source: hosted
     version: "6.0.0"
   flutter_localizations:
-    dependency: transitive
+    dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -136,14 +128,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.13.0"
-  material_ui:
-    dependency: "direct main"
-    description:
-      name: material_ui
-      sha256: "474c135fd46b56ff1d35ca982155e8863d28fbc6464d1192acf4ee53a738680e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.11.0"
   meta:
     dependency: transitive
     description:
@@ -219,14 +203,14 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.3.0"
+    version: "0.3.1"
   turkish_kit_flutter:
     dependency: "direct main"
     description:
       path: "../../turkish_kit_flutter"
       relative: true
     source: path
-    version: "0.3.0"
+    version: "0.3.1"
   vector_math:
     dependency: transitive
     description:
@@ -245,4 +229,4 @@ packages:
     version: "15.4.0"
 sdks:
   dart: ">=3.13.2 <4.0.0"
-  flutter: ">=3.47.0"
+  flutter: ">=3.32.0"
