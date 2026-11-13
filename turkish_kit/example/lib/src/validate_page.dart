@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:turkish_kit_flutter/turkish_kit_flutter.dart';
 
 import 'app_strings.dart';

@@ -1,3 +1,27 @@
+## 0.3.0
+
+* **Breaking:** the widgets now use
+  [material_ui](https://pub.dev/packages/material_ui) instead of
+  `package:flutter/material.dart`, which is deprecated in Flutter 3.50.
+  `TurkishMoneyField.decoration` takes material_ui's `InputDecoration`; import
+  it from `package:material_ui/material_ui.dart` (or run
+  `dart fix --apply --code=migrate_design_widgets` on Flutter 3.50).
+* Requires Flutter 3.47.0 / Dart 3.13 or later (material_ui 1.11.0).
+* Accepts turkish_kit 0.2.x and 0.3.x.
+* Example and tests use material_ui.
+
+**Türkçe**
+
+* **Kırıcı değişiklik:** widget'lar artık Flutter 3.50'de kullanımdan kalkan
+  `package:flutter/material.dart` yerine
+  [material_ui](https://pub.dev/packages/material_ui) kullanıyor.
+  `TurkishMoneyField.decoration`, material_ui'ın `InputDecoration` sınıfını
+  alıyor; onu `package:material_ui/material_ui.dart`'tan içe aktarın (ya da
+  Flutter 3.50'de `dart fix --apply --code=migrate_design_widgets` çalıştırın).
+* Flutter 3.47.0 / Dart 3.13 veya üstü gerekiyor (material_ui 1.11.0).
+* turkish_kit 0.2.x ve 0.3.x ile çalışıyor.
+* Örnek ve testler material_ui kullanıyor.
+
 ## 0.2.1
 
 * DOCS: README "Other packages" list updated to all 11 other packages by the

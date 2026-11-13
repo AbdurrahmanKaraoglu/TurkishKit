@@ -22,12 +22,22 @@ Türkçe açıklama için [aşağıya](#türkçe) bakın.
 
 ```yaml
 dependencies:
-  turkish_kit_flutter: ^0.2.0
+  turkish_kit_flutter: ^0.3.0
 ```
 
 ```dart
+import 'package:material_ui/material_ui.dart';
 import 'package:turkish_kit_flutter/turkish_kit_flutter.dart';
 ```
+
+Requires Flutter 3.47 or later (Dart 3.13). The widgets are built on
+[material_ui](https://pub.dev/packages/material_ui), the package that replaces
+`package:flutter/material.dart` from Flutter 3.50 on. Take `InputDecoration`
+and the other Material types you pass to `TurkishMoneyField` from
+`package:material_ui/material_ui.dart`. The types of
+`package:flutter/material.dart` are separate classes and are not accepted.
+`dart fix --apply --code=migrate_design_widgets` (Flutter 3.50) changes the
+imports of your app for you.
 
 ## Money field
 
@@ -147,8 +157,17 @@ MIT. See [LICENSE](LICENSE).
 
 ```yaml
 dependencies:
-  turkish_kit_flutter: ^0.2.0
+  turkish_kit_flutter: ^0.3.0
 ```
+
+Flutter 3.47 veya üstü (Dart 3.13) gerekir. Widget'lar, Flutter 3.50'den
+itibaren `package:flutter/material.dart`'ın yerini alan
+[material_ui](https://pub.dev/packages/material_ui) paketiyle yazıldı.
+`TurkishMoneyField`'a verdiğiniz `InputDecoration` ve diğer Material türlerini
+`package:material_ui/material_ui.dart`'tan alın. `package:flutter/material.dart`
+türleri ayrı sınıflardır ve kabul edilmez. Uygulamanızdaki importları
+`dart fix --apply --code=migrate_design_widgets` (Flutter 3.50) sizin için
+değiştirir.
 
 ### Para alanı
 

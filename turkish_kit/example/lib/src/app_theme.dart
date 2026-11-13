@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A restrained, corporate look: navy primary, neutral surfaces, flat cards
 /// with hairline borders.

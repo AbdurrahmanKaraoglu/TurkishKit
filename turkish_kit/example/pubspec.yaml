@@ -9,8 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
+  material_ui: ^1.11.0
   turkish_kit:
     path: ..
   turkish_kit_flutter:

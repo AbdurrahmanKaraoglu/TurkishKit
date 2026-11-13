@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:turkish_kit/turkish_kit.dart';
 
 /// The app language chosen in the language menu; null follows the device.

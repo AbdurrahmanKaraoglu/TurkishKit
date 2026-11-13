@@ -1,3 +1,18 @@
+## 0.3.0
+
+* No API changes; the version follows turkish_kit_flutter 0.3.0.
+* Example app: moved to material_ui (Flutter 3.50 deprecates
+  `package:flutter/material.dart`) and to Android Gradle Plugin 9.3.1,
+  Gradle 9.5.0 and Kotlin 2.4.20, which Flutter 3.50 needs to build it.
+
+**Türkçe**
+
+* API değişikliği yok; sürüm turkish_kit_flutter 0.3.0 ile hizalandı.
+* Örnek uygulama: material_ui'a geçirildi (Flutter 3.50'de
+  `package:flutter/material.dart` kullanımdan kalkıyor). Flutter 3.50'de
+  derlenebilmesi için Android Gradle Plugin 9.3.1, Gradle 9.5.0 ve
+  Kotlin 2.4.20'ye yükseltildi.
+
 ## 0.2.1
 
 * DOCS: README "Other packages" list updated to all 11 other packages by the
